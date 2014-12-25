@@ -1,0 +1,67 @@
+/* controls */
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-controls .fw-form-item-control-buttons {
+	display: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio:hover .fw-form-item-controls .fw-form-item-control-buttons {
+	display: inline-block;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-controls .fw-form-item-control-buttons > a,
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-controls .fw-form-item-control-buttons > a:hover {
+	text-decoration: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-controls .fw-form-item-control-buttons a.fw-form-item-control-required {
+	color: #999999;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-controls .fw-form-item-control-buttons a.fw-form-item-control-required.required {
+	color: #ff0000;
+}
+
+/* end: controls */
+
+
+/* preview */
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview {
+	padding: 5px 0;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-label {
+	padding: 5px 0 10px;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-label span {
+	display: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-label span.required {
+	display: inline;
+	color: #ff0000;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choices-list .if-list-open,
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choices-list.open .if-list-closed {
+	display: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choices-list.open .if-list-open {
+	display: inline;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choice {
+	margin: 5px 0;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choice a {
+	text-decoration: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-radio .fw-form-item-preview .fw-form-item-preview-choices .fw-form-item-preview-choices-list:not(.open) .fw-form-item-preview-choice:not(:first-child) {
+	display: none;
+}
+
+/* end: preview */

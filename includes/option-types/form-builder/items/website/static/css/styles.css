@@ -1,0 +1,46 @@
+/* controls */
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-controls .fw-form-item-control-buttons {
+	display: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website:hover .fw-form-item-controls .fw-form-item-control-buttons {
+	display: inline-block;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-controls .fw-form-item-control-buttons > a,
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-controls .fw-form-item-control-buttons > a:hover {
+	text-decoration: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-controls .fw-form-item-control-buttons a.fw-form-item-control-required {
+	color: #999999;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-controls .fw-form-item-control-buttons a.fw-form-item-control-required.required {
+	color: #ff0000;
+}
+
+/* end: controls */
+
+
+/* preview */
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-preview {
+	padding: 5px 0;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-preview .fw-form-item-preview-label {
+	padding: 5px 0 10px;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-preview .fw-form-item-preview-label span {
+	display: none;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-website .fw-form-item-preview .fw-form-item-preview-label span.required {
+	display: inline;
+	color: #ff0000;
+}
+
+/* end: preview */

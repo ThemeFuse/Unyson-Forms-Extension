@@ -1,0 +1,18 @@
+.fw-option-type-form-builder .fw-form-builder-item-style-default {
+	border: 1px dashed #dddddd;
+	background-color: #f8f8f8;
+	padding: 10px;
+}
+
+.fw-option-type-form-builder .fw-builder-item-width-changer {
+	height: 20px;
+	display: inline-block;
+}
+
+.fw-option-type-form-builder .builder-item-type .item-type-icon-title .item-type-icon img {
+	opacity: 0.3;
+}
+
+.fw-option-type-form-builder .builder-item-type:hover .item-type-icon-title .item-type-icon img {
+	opacity: 0.45;
+}
