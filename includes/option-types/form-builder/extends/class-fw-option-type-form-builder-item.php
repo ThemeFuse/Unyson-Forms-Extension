@@ -14,7 +14,7 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	 * Render item html for frontend form
 	 *
 	 * @param array $item Attributes from Backbone JSON
-	 * @param mixed|null $input_value
+	 * @param null|string|array $input_value Value submitted by the user
 	 * @return string HTML
 	 */
 	abstract public function frontend_render(array $item, $input_value);
@@ -23,7 +23,7 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	 * Validate item on frontend form submit
 	 *
 	 * @param array $item Attributes from Backbone JSON
-	 * @param mixed|null $input_value
+	 * @param null|string|array $input_value Value submitted by the user
 	 * @return null|string Error message
 	 */
 	abstract public function frontend_validate(array $item, $input_value);

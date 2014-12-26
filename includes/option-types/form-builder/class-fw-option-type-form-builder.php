@@ -20,6 +20,8 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder
 
 		require $dir .'/extends/class-fw-option-type-form-builder-item.php';
 		require $dir .'/items/form-builder-items.php';
+
+		do_action('fw_option_type_form_builder_init');
 	}
 
 	/**
