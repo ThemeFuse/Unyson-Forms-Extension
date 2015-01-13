@@ -66,6 +66,7 @@ class FW_Extension_Forms extends FW_Extension
 		add_action('pre_get_posts', array($this, '_action_pre_get_posts'));
 		add_action('admin_menu', array($this, '_action_replace_post_submit_meta_box'));
 		add_action('save_post', array($this, '_action_save_post'), 10, 2);
+		add_filter('post_updated_messages', array($this, '_filter_change_updated_messages'));
 	}
 
 	/**
@@ -735,5 +736,41 @@ class FW_Extension_Forms extends FW_Extension
 		} else {
 			do_action('fw_ext_forms:save_post:'. $type, $form_type);
 		}
+	}
+
+	/**
+	 * Remove invalid link "View post" from notice messages after form save
+	 * @internal
+	 */
+	function _filter_change_updated_messages($messages)
+	{
+		/** @var wpdb $wpdb */
+		global $post;
+
+		if ($post->post_type !== $this->get_post_type()) {
+			return $messages;
+		}
+
+		$obj = get_post_type_object($post->post_type);
+		$singular = $obj->labels->singular_name;
+
+		$messages[$post->post_type] = array(
+			0 => '', // Unused. Messages start at index 1.
+			1 => sprintf(__('%s updated.', 'fw'), $singular),
+			2 => __('Custom field updated.', 'fw'),
+			3 => __('Custom field deleted.', 'fw'),
+			4 => sprintf(__('%s updated.', 'fw'), $singular),
+			5 => isset($_GET['revision'])
+				? sprintf(__('%s restored to revision from %s', 'fw'), $singular, wp_post_revision_title((int)$_GET['revision'], false))
+				: false,
+			6 => sprintf(__('%s published.', 'fw'), $singular),
+			7 => __('Page saved.', 'fw'),
+			8 => sprintf(__('%s submitted.', 'fw'), $singular),
+			9 => sprintf(__('%s scheduled for: %s.', 'fw'), $singular,
+				'<strong>' . date_i18n('M j, Y @ G:i') . '</strong>'),
+			10 => sprintf(__('%s draft updated.', 'fw'), $singular),
+		);
+
+		return $messages;
 	}
 }

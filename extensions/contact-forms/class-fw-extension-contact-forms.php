@@ -147,7 +147,17 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 		if (!fw_ext_mailer_is_configured()) {
 			FW_Flash_Messages::add(
 				'fw-ext-forms-'. $this->get_form_type() .'-mailer',
-				__('Please configure the Mailer extension.', 'fw'),
+				str_replace(
+					array(
+						'{mailer_link}'
+					),
+					array(
+						fw_html_tag('a', array(
+							'href' => fw()->extensions->manager->get_extension_link('mailer'),
+						), __('Mailer', 'fw'))
+					),
+					__('Please configure the {mailer_link} extension.', 'fw')
+				),
 				'error'
 			);
 		}
