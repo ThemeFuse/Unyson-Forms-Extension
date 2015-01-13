@@ -57,6 +57,7 @@ class FW_Extension_Forms extends FW_Extension
 		add_filter('fw_post_options', array($this, '_filter_post_options'), 10, 2);
 		add_filter('manage_'. $this->get_post_type() .'_posts_columns', array($this, '_filter_admin_forms_list_columns'));
 		add_filter('views_edit-'. $this->get_post_type(), array($this, '_filter_posts_list_filter_links'));
+		add_filter('post_row_actions', array($this, '_filter_post_row_actions'), 12, 2);
 	}
 
 	private function add_actions()
@@ -772,5 +773,23 @@ class FW_Extension_Forms extends FW_Extension
 		);
 
 		return $messages;
+	}
+
+	/**
+	 * Remove the "Quick Edit" link
+	 * @param array $actions
+	 * @param WP_Post $post
+	 * @return array
+	 * @internal
+	 */
+	public function _filter_post_row_actions($actions, $post)
+	{
+		if ($post->post_type !== $this->get_post_type()) {
+			return $actions;
+		}
+
+		unset($actions['inline hide-if-no-js'], $actions['view']);
+
+		return $actions;
 	}
 }
