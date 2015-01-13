@@ -152,9 +152,10 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 						'{mailer_link}'
 					),
 					array(
-						fw_html_tag('a', array(
-							'href' => fw()->extensions->manager->get_extension_link('mailer'),
-						), __('Mailer', 'fw'))
+						// the fw()->extensions->manager->get_extension_link() method is available starting with v2.1.7
+						version_compare(fw()->manifest->get_version(), '2.1.7', '>=')
+							? fw_html_tag('a', array('href' => fw()->extensions->manager->get_extension_link('mailer')), __('Mailer', 'fw'))
+							: __('Mailer', 'fw')
 					),
 					__('Please configure the {mailer_link} extension.', 'fw')
 				),
