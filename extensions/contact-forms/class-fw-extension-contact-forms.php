@@ -33,6 +33,21 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 						'type' => 'tab',
 						'title' => __('Settings', 'fw'),
 						'options' => array(
+							'form_header_settings' => array(
+								'type' => 'group',
+								'options' => array(
+									'form_title' => array(
+										'type'  => 'text',
+										'label' => __('Form title', 'fw'),
+										'value' => __('Please submit form from below', 'fw'),
+									),
+									'form_subtitle' => array(
+										'type'  => 'text',
+										'label' => __('Form subtitle', 'fw'),
+										'value' => '',
+									)
+								),
+							),
 							'form_text_settings' => array(
 								'type' => 'group',
 								'options' => array(
