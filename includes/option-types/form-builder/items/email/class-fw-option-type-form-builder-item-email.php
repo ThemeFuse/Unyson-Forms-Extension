@@ -97,6 +97,12 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 					'type' => 'group',
 					'options' => array(
 						array(
+							'placeholder' => array(
+								'type'  => 'text',
+								'label' => __('Placeholder', 'fw'),
+							)
+						),
+						array(
 							'default_value' => array(
 								'type'  => 'text',
 								'label' => __('Default Value', 'fw'),
@@ -167,6 +173,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 			$attr = array(
 				'type'  => 'text',
 				'name'  => $item['shortcode'],
+				'placeholder'  => $options['placeholder'],
 				'value' => is_null($input_value) ? $options['default_value'] : $input_value,
 				'id'    => 'id-'. fw_unique_increment(),
 			);
