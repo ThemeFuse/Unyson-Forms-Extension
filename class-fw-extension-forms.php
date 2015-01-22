@@ -68,6 +68,15 @@ class FW_Extension_Forms extends FW_Extension
 		add_action('admin_menu', array($this, '_action_replace_post_submit_meta_box'));
 		add_action('save_post', array($this, '_action_save_post'), 10, 2);
 		add_filter('post_updated_messages', array($this, '_filter_change_updated_messages'));
+
+		if ( is_admin() ) {
+			if ( is_admin() ) {
+				add_action(
+					'fw_extension_settings_form_render:' . $this->get_name(),
+					array( $this, '_action_extension_settings_form_render' )
+				);
+			}
+		}
 	}
 
 	/**
@@ -163,6 +172,19 @@ class FW_Extension_Forms extends FW_Extension
 				return false;
 			}
 		}
+	}
+
+	/**
+	 * @internal
+	 */
+	public function _action_extension_settings_form_render() {
+		wp_enqueue_script(
+			'fw_option_email_settings',
+			$this->get_declared_URI( '/includes/mailer/static/js/scripts.js' ),
+			array( 'jquery' ),
+			false,
+			true
+		);
 	}
 
 	/**

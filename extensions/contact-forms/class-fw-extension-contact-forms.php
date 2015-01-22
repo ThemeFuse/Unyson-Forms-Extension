@@ -46,21 +46,6 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 						'type' => 'tab',
 						'title' => __('Settings', 'fw'),
 						'options' => array(
-							'form_header_settings' => array(
-								'type' => 'group',
-								'options' => array(
-									'form_title' => array(
-										'type'  => 'text',
-										'label' => __('Form title', 'fw'),
-										'value' => __('Please submit form from below', 'fw'),
-									),
-									'form_subtitle' => array(
-										'type'  => 'text',
-										'label' => __('Form subtitle', 'fw'),
-										'value' => '',
-									)
-								),
-							),
 							'form_text_settings' => array(
 								'type' => 'group',
 								'options' => array(
@@ -135,7 +120,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 			return;
 		}
 
-		$result = fw_ext_mailer_send_mail(
+		$result = fw_ext_forms_mailer_send_mail(
 			$to,
 			get_the_title($form_id),
 			$this->render_view('email', array(
@@ -172,7 +157,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 	 */
 	public function _action_post_form_type_save()
 	{
-		if (!fw_ext_mailer_is_configured()) {
+		if (!fw_ext_forms_mailer_is_configured()) {
 			FW_Flash_Messages::add(
 				'fw-ext-forms-'. $this->get_form_type() .'-mailer',
 				str_replace(
@@ -182,7 +167,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 					array(
 						// the fw()->extensions->manager->get_extension_link() method is available starting with v2.1.7
 						version_compare(fw()->manifest->get_version(), '2.1.7', '>=')
-							? fw_html_tag('a', array('href' => fw()->extensions->manager->get_extension_link('mailer')), __('Mailer', 'fw'))
+							? fw_html_tag('a', array('href' => fw()->extensions->manager->get_extension_link('forms')), __('Mailer', 'fw'))
 							: __('Mailer', 'fw')
 					),
 					__('Please configure the {mailer_link} extension.', 'fw')
