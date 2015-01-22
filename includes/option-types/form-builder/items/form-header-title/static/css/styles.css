@@ -6,6 +6,10 @@
 	padding: 20px;
 }
 
+div[data-builder-item-type="form-header-title"]{
+	display: none !important;
+}
+
 .fw-option-type-form-builder .fw-form-builder-item-type-form_header_title:hover{
 	cursor: default;
 }
