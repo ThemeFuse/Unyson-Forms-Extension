@@ -1,0 +1,16 @@
+/* controls */
+
+.fw-option-type-form-builder .fw-form-builder-item-type-form_header_title{
+	background: #fff;
+	border: 1px solid #EAEAEA;
+	padding: 20px;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-form_header_title:hover{
+	cursor: default;
+}
+
+.fw-form-item-preview-title {
+	font-size: 1.3em;
+	margin-bottom: 6px;
+}

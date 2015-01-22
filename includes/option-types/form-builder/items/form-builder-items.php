@@ -10,3 +10,4 @@ require $dir .'/radio/class-fw-option-type-form-builder-item-radio.php';
 require $dir .'/select/class-fw-option-type-form-builder-item-select.php';
 require $dir .'/email/class-fw-option-type-form-builder-item-email.php';
 require $dir .'/website/class-fw-option-type-form-builder-item-website.php';
+require $dir .'/form-header-title/class-fw-option-type-form-builder-item-form-header-title.php';

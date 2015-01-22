@@ -26,6 +26,19 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form
 							'form' => array(
 								'label' => false,
 								'type'  => 'form-builder',
+								'value' => array(
+									'json' => json_encode(array(
+										array(
+											'type' => 'form-header-title',
+											'shortcode' => 'form_header_title',
+											'width' => '',
+											'options' => array(
+												'title' => '',
+												'subtitle' => '',
+											)
+										)
+									))
+								)
 							),
 						),
 					),
