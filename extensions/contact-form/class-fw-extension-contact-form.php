@@ -5,9 +5,6 @@
 class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 
 	public function _init() {
-		if ( ! is_admin() ) {
-			$this->add_actions();
-		}
 	}
 
 	/**
@@ -19,7 +16,7 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 
 	public function get_form_builder_value( $form_id ) {
 
-		$form = FW_Session::get( $this->get_name() . '-forms/' . $form_id );
+		$form = $this->get_db_data( $this->get_name() . '-' . $form_id );
 
 		return ( empty( $form['form'] ) ? array() : $form['form'] );
 	}
@@ -32,9 +29,7 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 		}
 
 		$form_id = $data['id'];
-		$data['time'] = time();
-		FW_Session::set( $this->get_name() . '-forms/' . $form_id, $data );
-		do_action( 'fw-' . $this->get_name() . '-render-form' );
+		$this->set_db_data( $this->get_name() . '-' . $form_id, $data );
 
 		$submit_button = $this->render_view( 'form',
 			array(
@@ -62,7 +57,7 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 			);
 		}
 
-		$form = FW_Session::get( $this->get_name() . '-forms/' . $form_id );
+		$form = $this->get_db_data( $this->get_name() . '-' . $form_id );
 
 		if ( empty( $form ) ) {
 			FW_Flash_Messages::add(
@@ -132,25 +127,5 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 				'error'
 			);
 		}
-	}
-
-	/**
-	 * @internal
-	 */
-	public function _action_theme_remove_forms_from_session() {
-		$forms = FW_Session::get( $this->get_name() . '-forms' );
-		if ( !is_array( $forms ) || empty($forms) ) {
-			return;
-		}
-
-		foreach ( $forms as $key => $form ) {
-			if ( time() - $form['time'] >= ( 10800 ) ) {
-				FW_Session::del( $this->get_name() . '-forms/' . $key );
-			}
-		}
-	}
-
-	private function add_actions() {
-		add_action( 'wp_loaded', array( $this, '_action_theme_remove_forms_from_session' ), 999 );
 	}
 }
