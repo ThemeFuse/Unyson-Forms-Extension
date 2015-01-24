@@ -1,17 +1,12 @@
 <?php if (!defined('FW')) die('Forbidden');
 /**
- * @var int $form_id
  * @var array $form_values
  * @var array $shortcode_to_item
  */
+
 ?>
 
 <table align="center" border="0" cellpadding="10">
-	<thead>
-		<tr>
-			<th colspan="2"><h1><?php echo fw_htmlspecialchars(get_the_title($form_id)) ?></h1></th>
-		</tr>
-	</thead>
 	<tbody>
 	<?php foreach ($form_values as $shortcode => $form_value): ?>
 		<?php

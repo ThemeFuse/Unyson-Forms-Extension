@@ -44,4 +44,13 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 			return $default_path;
 		}
 	}
+
+	/**
+	 * Tells if the form input is only for visual rendering in form purpose and will not be used to submit any data
+	 *
+	 * @return bool
+	 */
+	public function visual_only() {
+		return false;
+	}
 }

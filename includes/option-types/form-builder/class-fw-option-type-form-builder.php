@@ -60,6 +60,10 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder
 	 */
 	public function get_value_from_items($items)
 	{
+		if ( ! is_array( $items ) ) {
+			return array();
+		}
+
 		static $recursion_level = 0;
 
 		/** prevent duplicate shortcodes */
@@ -188,15 +192,20 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder
 	public function frontend_get_value_from_items(array $items, array $input_values)
 	{
 		/**
-		 * @var FW_Option_Type_Builder_Item[] $item_types
+		 * @var FW_Option_Type_Form_Builder_Item[] $item_types
 		 */
 		$item_types = $this->get_item_types();
 
 		$values = array();
 
 		foreach ($items as $item) {
+
 			if (!isset($item_types[ $item['type'] ])) {
 				trigger_error('Invalid form item type: '. $item['type'], E_USER_WARNING);
+				continue;
+			}
+
+			if ( $item_types[$item['type']]->visual_only() ) {
 				continue;
 			}
 

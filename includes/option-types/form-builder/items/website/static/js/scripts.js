@@ -1,4 +1,4 @@
-fwEvents.one('fw-builder:'+ 'form-builder' +':register-items', function(builder){
+fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 	var currentItemType = 'website';
 	var localized = window['fw_form_builder_item_type_'+ currentItemType];
 

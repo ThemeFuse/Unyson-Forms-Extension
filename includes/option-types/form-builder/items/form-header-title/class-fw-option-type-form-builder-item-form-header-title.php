@@ -118,7 +118,13 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 	/**
 	 * {@inheritdoc}
 	 */
-	public function frontend_validate( array $item, $input_value ) {
+	public function frontend_validate( array $item, $input_value ) {}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function visual_only() {
+		return true;
 	}
 }
 
