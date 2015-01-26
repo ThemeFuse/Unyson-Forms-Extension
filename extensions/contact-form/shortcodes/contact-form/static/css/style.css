@@ -1,0 +1,8 @@
+#fw-backend-option-fw-edit-options-modal-html, #fw-options-box-main{
+	border-bottom: none;
+	box-shadow: none;
+}
+
+#fw-backend-option-fw-edit-options-modal-html{
+	padding-bottom: 0;
+}
