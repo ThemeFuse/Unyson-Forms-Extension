@@ -86,11 +86,6 @@ $options = array(
 						)
 					)
 				),
-			),
-			'html'     => array(
-				'label' => false,
-				'type'  => 'html',
-				'html'  => ( ! fw_ext_mailer_is_configured() ) ? sprintf( __( 'Please configure %sMailer%s', 'fw' ), '<a href="#" id="fw-ext-contact-form-get-mailer-page" style="color:red">', '</a>' ) : '',
 			)
 		)
 	)
