@@ -13,7 +13,7 @@ $options = array(
 			),
 			'builder'  => array(
 				'type'    => 'tab',
-				'title'   => __( 'Form Editor', 'fw' ),
+				'title'   => __( 'Form Fields', 'fw' ),
 				'options' => array(
 					'form' => array(
 						'label' => false,

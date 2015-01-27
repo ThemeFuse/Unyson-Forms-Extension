@@ -16,6 +16,11 @@
 		switch ($item['type']) {
 			case 'checkboxes':
 				$title = fw_htmlspecialchars($item_options['label']);
+
+				if ( ! is_array( $form_value ) || empty( $form_value ) ) {
+					break;
+				}
+
 				$value = implode(', ', $form_value);
 				break;
 			case 'textarea':

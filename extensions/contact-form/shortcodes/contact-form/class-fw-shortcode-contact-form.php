@@ -4,15 +4,19 @@
 
 class FW_Shortcode_Contact_Form extends FW_Shortcode
 {
-	public function _init() {
-		add_action( 'admin_enqueue_scripts', array( $this, '_action_admin_add_static' ) );
+	/**
+	 * @internal
+	 */
+	public function _init()
+	{
+		if (is_admin()) {
+			$this->load_item_type();
+		}
 	}
 
-	public function _action_admin_add_static() {
-		$static_file = $this->locate_path('/static.php');
-		if ($static_file) {
-			require_once $static_file;
-		}
+	private function load_item_type()
+	{
+		require $this->get_declared_path('/includes/page-builder-contact-form-item/class-page-builder-contact-form-item.php');
 	}
 
 	protected function _render($atts, $content = null, $tag = '')
