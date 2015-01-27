@@ -44,6 +44,7 @@
 			},
 			events: {
 				'click .contact-form-item-mailer': 'configureMailer',
+				'click .pb-item-type-contact-form': 'editOptions',
 				'click .edit-options': 'editOptions',
 				'click .contact-form-item-clone': 'cloneItem',
 				'click .contact-form-item-delete': 'removeItem'
@@ -54,6 +55,7 @@
 					return;
 				}
 				this.modal.open();
+				return false;
 			},
 			configureMailer: function (e) {
 				this.editOptions(e);
@@ -62,6 +64,7 @@
 					data.$elements.find('.fw-options-tabs-wrapper').find('a[href="#fw-options-tab-settings"]').trigger('click');
 					data.$elements.find('.fw-options-tabs-wrapper').find('#fw-options-tab-settings').find('a[href="#fw-options-tab-mailer-options"]').trigger('click');
 				});
+				return false;
 			},
 			cloneItem: function () {
 				var index = this.model.collection.indexOf(this.model),
@@ -74,10 +77,12 @@
 				clonedColumn = new PageBuilderContactFormItem(attributes);
 				this.model.collection.add(clonedColumn, {at: index + 1});
 				clonedColumn.get('_items').reset(_items);
+				return false;
 			},
 			removeItem: function () {
 				this.remove();
 				this.model.collection.remove(this.model);
+				return false;
 			}
 		});
 
