@@ -6,10 +6,10 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 		template: _.template(
 			'<div class="fw-form-builder-item-style-default fw-form-builder-item-type-'+ currentItemType +'">'+
 				'<div class="fw-form-item-controls fw-row">'+
-					'<div class="fw-form-item-controls-left fw-col-xs-8">'+
+					'<div class="fw-form-item-controls-left fw-col-xs-7">'+
 						'<div class="fw-form-item-width"></div>'+
 					'</div>'+
-					'<div class="fw-form-item-controls-right fw-col-xs-4 fw-text-right">'+
+					'<div class="fw-form-item-controls-right fw-col-xs-5 fw-text-right">'+
 						'<div class="fw-form-item-control-buttons">'+
 							'<a class="fw-form-item-control-required dashicons<% if (required) { %> required<% } %>" data-hover-tip="<%- toggle_required %>" href="#" onclick="return false;" >*</a>'+
 							'<a class="fw-form-item-control-edit dashicons dashicons-edit" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+

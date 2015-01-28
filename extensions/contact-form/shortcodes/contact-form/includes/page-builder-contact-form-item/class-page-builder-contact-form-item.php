@@ -77,7 +77,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 			array(
 				'tab'         => __( 'Content Elements', 'fw' ),
 				'title'       => __( 'Contact form', 'fw' ),
-				'description' => __( "Build contact forms", 'fw' ),
+				'description' => __( "Add a Contact Form", 'fw' ),
 				'image'       => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" ),
 			)
 		);
