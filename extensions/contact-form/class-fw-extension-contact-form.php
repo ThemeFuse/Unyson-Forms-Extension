@@ -31,13 +31,20 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 		$form_id = $data['id'];
 		$this->set_db_data( $this->get_name() . '-' . $form_id, $data );
 
-		$submit_button = $this->render_view( 'form',
+		return $this->render_view(
+			'form',
 			array(
-				'submit_button_text' => $data['submit_button_text']
+				'form_html' => fw_ext( 'forms' )->render_form(
+					$form_id, $form, $this->get_name(),
+					$submit_button = $this->render_view(
+						'submit',
+						array(
+							'submit_button_text' => $data['submit_button_text']
+						)
+					)
+				)
 			)
 		);
-
-		return fw_ext( 'forms' )->render_form( $form_id, $form, $this->get_name(), $submit_button );
 	}
 
 	public function process_form( $form_values, $data ) {
@@ -89,12 +96,14 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 		if ( $result['status'] ) {
 			FW_Flash_Messages::add(
 				$flash_id,
-				$this->get_db_data( $this->get_name() . '-' . $form_id . '/success_message', __( 'Message sent!', 'fw' ) )
+				$this->get_db_data( $this->get_name() . '-' . $form_id . '/success_message',
+					__( 'Message sent!', 'fw' ) )
 			);
 		} else {
 			FW_Flash_Messages::add(
 				$flash_id,
-				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message', __( 'Oops something went wrong.', 'fw' ) ),
+				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message',
+					__( 'Oops something went wrong.', 'fw' ) ),
 				' <em>(' . $result['message'] . ')</em>'
 			);
 		}

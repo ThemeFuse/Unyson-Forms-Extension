@@ -1,8 +1,8 @@
 <?php if (!defined('FW')) die('Forbidden');
 /**
- * @var string $submit_button_text
+ * @var string $form_html
  */
 ?>
-<div>
-	<input type="submit" value="<?php echo esc_attr($submit_button_text) ?>" />
+<div class="form-wrapper contact-form">
+	<?php echo $form_html; ?>
 </div>
