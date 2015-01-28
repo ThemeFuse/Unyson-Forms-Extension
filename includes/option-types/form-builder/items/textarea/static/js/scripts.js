@@ -22,7 +22,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 						'<div class="fw-form-item-preview-label-wrapper"><label data-hover-tip="<%- edit_label %>"><%- label %></label> <span <% if (required) { %>class="required"<% } %>>*</span></div>'+
 						'<div class="fw-form-item-preview-label-edit"><!-- --></div>'+
 					'</div>'+
-					'<div class="fw-form-item-preview-input"><input type="text" value="<%- default_value %>"></div>'+
+					'<div class="fw-form-item-preview-input"><input type="text" placeholder="<%- placeholder %>" value="<%- default_value %>"></div>'+
 				'</div>'+
 			'</div>'
 		),
@@ -70,6 +70,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 		render: function () {
 			this.defaultRender({
 				label: fw.opg('label', this.model.get('options')),
+				placeholder: fw.opg('placeholder', this.model.get('options')),
 				required: fw.opg('required', this.model.get('options')),
 				default_value: fw.opg('default_value', this.model.get('options')),
 				edit: localized.l10n.edit,

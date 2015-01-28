@@ -33,11 +33,7 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 
 		$submit_button = $this->render_view( 'form',
 			array(
-				'submit_button_text' => fw_ext_contact_form_search_option(
-					'submit_button_text',
-					$data,
-					__( 'Send', 'fw' )
-				)
+				'submit_button_text' => $data['submit_button_text']
 			)
 		);
 
@@ -89,15 +85,16 @@ class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
 			) )
 		);
 
+
 		if ( $result['status'] ) {
 			FW_Flash_Messages::add(
 				$flash_id,
-				fw_get_db_post_option( $form_id, 'success_message', __( 'Message sent!', 'fw' ) )
+				$this->get_db_data( $this->get_name() . '-' . $form_id . '/success_message', __( 'Message sent!', 'fw' ) )
 			);
 		} else {
 			FW_Flash_Messages::add(
 				$flash_id,
-				fw_get_db_post_option( $form_id, 'failure_message', __( 'Oops something went wrong.', 'fw' ) ) .
+				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message', __( 'Oops something went wrong.', 'fw' ) ),
 				' <em>(' . $result['message'] . ')</em>'
 			);
 		}

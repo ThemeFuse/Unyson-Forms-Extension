@@ -95,6 +95,12 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 					'type' => 'group',
 					'options' => array(
 						array(
+							'placeholder' => array(
+								'type'  => 'text',
+								'label' => __('Placeholder', 'fw'),
+							)
+						),
+						array(
 							'default_value' => array(
 								'type'  => 'textarea',
 								'label' => __('Default Value', 'fw'),
@@ -252,6 +258,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 		{
 			$attr = array(
 				'name'  => $item['shortcode'],
+				'placeholder'  => $options['placeholder'],
 				'id'    => 'id-'. fw_unique_increment(),
 			);
 
