@@ -21,6 +21,6 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 
 	protected function _render($atts, $content = null, $tag = '')
 	{
-		return fw_ext('contact-form')->render( $atts );
+		return fw_ext('contact-forms')->render( $atts );
 	}
 }

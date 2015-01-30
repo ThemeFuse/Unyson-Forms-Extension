@@ -2,7 +2,7 @@
 	die( 'Forbidden' );
 }
 
-class FW_Extension_Contact_Form extends FW_Extension_Forms_Form {
+class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
 	public function _init() {
 	}
