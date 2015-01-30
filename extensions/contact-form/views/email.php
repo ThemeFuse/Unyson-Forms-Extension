@@ -10,12 +10,22 @@
 	<tbody>
 	<?php foreach ($form_values as $shortcode => $form_value): ?>
 		<?php
+
+		if ( ! isset( $shortcode_to_item[ $shortcode ] ) ) {
+			continue;
+		}
+
 		$item = &$shortcode_to_item[$shortcode];
+
+		if ( ! isset( $item['options'] ) ) {
+			continue;
+		}
+
 		$item_options = &$item['options'];
 
 		switch ($item['type']) {
 			case 'checkboxes':
-				$title = fw_htmlspecialchars($item_options['label']);
+				$title = ( isset( $item_options['label'] ) ) ? fw_htmlspecialchars($item_options['label']) : '';
 
 				if ( ! is_array( $form_value ) || empty( $form_value ) ) {
 					break;
