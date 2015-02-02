@@ -70,6 +70,8 @@ class FW_Extension_Forms extends FW_Extension {
 		$form_type_input_name = 'fw_ext_forms_form_type';
 		$form_type_input_id   = 'fw_ext_forms_form_id';
 
+		$data['attr']['data-fw-ext-forms-type'] = $form_type;
+
 		echo '<input type="hidden" name="' . $form_type_input_name . '" value="' . esc_attr( $form_type ) . '" />';
 		echo '<input type="hidden" name="' . $form_type_input_id . '" value="' . esc_attr( $form_id ) . '" />';
 
