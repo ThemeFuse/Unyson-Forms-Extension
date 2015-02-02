@@ -23,7 +23,6 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 			'click .fw-form-item-control-required': 'toggleRequired',
 			'click .fw-form-item-preview .fw-form-item-preview-title label': 'openTitleEditor',
 			'click .fw-form-item-preview .fw-form-item-preview-subtitle label': 'openSubtitleEditor',
-			'change .fw-form-item-preview-input input': 'updateDefaultValueFromPreviewInput'
 		},
 		initialize: function() {
 			this.defaultInitialize();
@@ -128,7 +127,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 			if (!fw.elementEventHasListenerInContainer(jQuery(e.srcElement), 'click', this.$el)) {
 				this.openEdit();
 			}
-		}
+		},
 	});
 
 	var Item = builder.classes.Item.extend({
