@@ -59,13 +59,13 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 			'title' => array(
 				'type'  => 'text',
 				'label' => __( 'Title', 'fw' ),
-				'desc'  => __( '', 'fw' ),
+				'desc'  => __( 'The title will be displayed on contact form header', 'fw' ),
 				'value' => '',
 			),
 			'subtitle' => array(
-				'type'  => 'text',
+				'type'  => 'textarea',
 				'label' => __( 'Subtitle', 'fw' ),
-				'desc'  => __( '', 'fw' ),
+				'desc'  => __( 'The form header subtitle text', 'fw' ),
 				'value' => '',
 			)
 		);

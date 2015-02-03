@@ -17,7 +17,7 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title">' .
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Number field', 'fw' ) . '">' .
 					'<div class="item-type-icon"><img src="' . esc_attr( $this->get_uri( '/static/images/icon.png' ) ) . '" /></div>' .
 					'<div class="item-type-title">' . __( 'Number', 'fw' ) . '</div>' .
 					'</div>'
@@ -49,6 +49,7 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 				'l10n'     => array(
 					'item_title'      => __( 'Number', 'fw' ),
 					'label'           => __( 'Label', 'fw' ),
+					'edit_label'      => __( 'Edit Label', 'fw' ),
 					'toggle_required' => __( 'Toggle mandatory field', 'fw' ),
 					'edit'            => __( 'Edit', 'fw' ),
 					'delete'          => __( 'Delete', 'fw' )
@@ -73,15 +74,15 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							'label' => array(
 								'type'  => 'text',
 								'label' => __( 'Label', 'fw' ),
-								'desc'  => __( 'The label of the field that will be displayed to the users', 'fw' ),
+								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
 								'value' => __( 'Number', 'fw' ),
 							)
 						),
 						array(
 							'required' => array(
 								'type'  => 'switch',
-								'label' => __( 'Mandatory Field?', 'fw' ),
-								'desc'  => __( 'If this field is mandatory for the user', 'fw' ),
+								'label' => __( 'Mandatory Field', 'fw' ),
+								'desc'  => __( 'Make this field mandatory?', 'fw' ),
 								'value' => true,
 							)
 						),
@@ -96,14 +97,14 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							'placeholder' => array(
 								'type'  => 'text',
 								'label' => __( 'Placeholder', 'fw' ),
-								'desc'  => __( 'Input placeholder text', 'fw' ),
+								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
 						array(
 							'default_value' => array(
 								'type'  => 'text',
 								'label' => __( 'Default Value', 'fw' ),
-								'desc'  => __( 'The label of the field that will be displayed to the users', 'fw' ),
+								'desc' => __( 'This text will be used as field default value', 'fw' ),
 							)
 						)
 					)
@@ -124,7 +125,9 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 								'picker'  => array(
 									'constraint' => array(
 										'label'   => __( 'Restrictions', 'fw' ),
+										'desc'   => __( 'Set digits or values restrictions of this field', 'fw' ),
 										'type'    => 'radio',
+										'inline'  => true,
 										'choices' => array(
 											'digits' => __( 'Digits', 'fw' ),
 											'value'  => __( 'Value', 'fw' )
@@ -134,13 +137,15 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 								'choices' => array(
 									'digits' => array(
 										'min' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Min', 'fw' ),
+											'desc' => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Max', 'fw' ),
+											'desc' => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -148,11 +153,13 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 										'min' => array(
 											'type'  => 'text',
 											'label' => __( 'Min', 'fw' ),
+											'desc' => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'text',
 											'label' => __( 'Max', 'fw' ),
+											'desc' => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -170,7 +177,7 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							'info' => array(
 								'type'  => 'textarea',
 								'label' => __( 'Instructions for Users', 'fw' ),
-								'desc'  => __( 'The users will see this instructions in the tooltip near the field',
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field',
 									'fw' ),
 							)
 						),

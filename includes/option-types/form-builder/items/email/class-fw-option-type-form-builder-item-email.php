@@ -16,7 +16,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title">'.
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add an Email field', 'fw' ) . '">'.
 						'<div class="item-type-icon">'.
 							'<img src="'. esc_attr($this->get_uri('/static/images/icon.png')) .'" />'.
 						'</div>'.
@@ -71,21 +71,21 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 		return array(
 			array(
 				'g1' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'label' => array(
 								'type'  => 'text',
-								'label' => __('Label', 'fw'),
-								'desc'  => __('The label of the field that will be displayed to the users', 'fw'),
-								'value' => __('Email', 'fw'),
+								'label' => __( 'Label', 'fw' ),
+								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
+								'value' => __( 'Email', 'fw' ),
 							)
 						),
 						array(
 							'required' => array(
 								'type'  => 'switch',
-								'label' => __('Mandatory Field?', 'fw'),
-								'desc'  => __('If this field is mandatory for the user', 'fw'),
+								'label' => __( 'Mandatory Field', 'fw' ),
+								'desc'  => __( 'Make this field mandatory?', 'fw' ),
 								'value' => true,
 							)
 						),
@@ -94,20 +94,15 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 			),
 			array(
 				'g2' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'placeholder' => array(
 								'type'  => 'text',
-								'label' => __('Placeholder', 'fw'),
+								'label' => __( 'Placeholder', 'fw' ),
+								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
-						array(
-							'default_value' => array(
-								'type'  => 'text',
-								'label' => __('Default Value', 'fw'),
-							)
-						)
 					)
 				)
 			),
@@ -119,7 +114,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 							'info' => array(
 								'type'  => 'textarea',
 								'label' => __('Instructions for Users', 'fw'),
-								'desc'  => __('The users will see this instructions in the tooltip near the field', 'fw'),
+								'desc'  => __('The users will see these instructions in the tooltip near the field', 'fw'),
 							)
 						),
 					)
@@ -174,7 +169,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 				'type'  => 'text',
 				'name'  => $item['shortcode'],
 				'placeholder'  => $options['placeholder'],
-				'value' => is_null($input_value) ? $options['default_value'] : $input_value,
+				'value' => is_null($input_value) ? '' : $input_value,
 				'id'    => 'id-'. fw_unique_increment(),
 			);
 
@@ -208,7 +203,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 			'incorrect' => str_replace(
 				array('{label}'),
 				array($options['label']),
-				__('The {label} filed must contain a valid email', 'fw')
+				__('The {label} field must contain a valid email', 'fw')
 			),
 		);
 

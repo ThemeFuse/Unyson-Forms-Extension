@@ -20,9 +20,3 @@
 .fw-backend-option .fw-form-builder-item-type-form_header_title .fw-form-item-preview-subtitle-edit .fw-builder-item-inline-text-editor input{
 	width: 50% !important;
 }
-
-.fw-option-type-form-builder .fw-form-item-control-buttons a.fw-form-item-control-edit.dashicons.dashicons-welcome-write-blog {
-	font-size: 16px;
-	vertical-align: middle;
-	display: inline;
-}

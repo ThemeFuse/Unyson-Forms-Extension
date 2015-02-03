@@ -16,7 +16,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title">'.
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Paragraph Text', 'fw' ) . '">'.
 						'<div class="item-type-icon"><img src="'. esc_attr($this->get_uri('/static/images/icon.png')) .'" /></div>'.
 						'<div class="item-type-title">'. __('Paragraph Text', 'fw') .'</div>'.
 					'</div>'
@@ -64,26 +64,25 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 		fw()->backend->enqueue_options_static($this->get_options());
 	}
 
-	private function get_options()
-	{
+	private function get_options() {
 		return array(
 			array(
 				'g1' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'label' => array(
 								'type'  => 'text',
-								'label' => __('Label', 'fw'),
-								'desc'  => __('The label of the field that will be displayed to the users', 'fw'),
-								'value' => __('Paragraph', 'fw'),
+								'label' => __( 'Label', 'fw' ),
+								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
+								'value' => __( 'Paragraph Text', 'fw' ),
 							)
 						),
 						array(
 							'required' => array(
 								'type'  => 'switch',
-								'label' => __('Mandatory Field?', 'fw'),
-								'desc'  => __('If this field is mandatory for the user', 'fw'),
+								'label' => __( 'Mandatory Field', 'fw' ),
+								'desc'  => __( 'Make this field mandatory?', 'fw' ),
 								'value' => true,
 							)
 						),
@@ -92,18 +91,20 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 			),
 			array(
 				'g2' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'placeholder' => array(
 								'type'  => 'text',
-								'label' => __('Placeholder', 'fw'),
+								'label' => __( 'Placeholder', 'fw' ),
+								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
 						array(
 							'default_value' => array(
-								'type'  => 'textarea',
-								'label' => __('Default Value', 'fw'),
+								'type'  => 'text',
+								'label' => __( 'Default Value', 'fw' ),
+								'desc' => __( 'This text will be used as field default value', 'fw' ),
 							)
 						)
 					)
@@ -111,48 +112,52 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 			),
 			array(
 				'g3' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'constraints' => array(
-								'type'  => 'multi-picker',
-								'label' => false,
-								'desc'  => false,
-								'value' => array(
+								'type'    => 'multi-picker',
+								'label'   => false,
+								'desc'    => false,
+								'value'   => array(
 									'constraint' => 'characters',
 								),
-								'picker' => array(
+								'picker'  => array(
 									'constraint' => array(
-										'label'   => __('Restrictions', 'fw'),
+										'label'   => __( 'Restrictions', 'fw' ),
+										'desc' => __( 'Set characters or words restrictions for this field', 'fw' ),
 										'type'    => 'radio',
+										'inline'  => true,
 										'choices' => array(
-											'characters' => __('Characters', 'fw'),
-											'words' => __('Words', 'fw')
+											'characters' => __( 'Characters', 'fw' ),
+											'words'      => __( 'Words', 'fw' )
 										),
 									)
 								),
 								'choices' => array(
 									'characters' => array(
 										'min' => array(
-											'type'  => 'text',
-											'label' => __('Min', 'fw'),
+											'type'  => 'short-text',
+											'label' => __( 'Min', 'fw' ),
+											'desc' => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
-											'type'  => 'text',
-											'label' => __('Max', 'fw'),
+											'type'  => 'short-text',
+											'label' => __( 'Max', 'fw' ),
+											'desc' => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
-									'words' => array(
+									'words'      => array(
 										'min' => array(
 											'type'  => 'text',
-											'label' => __('Min', 'fw'),
+											'label' => __( 'Min', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'text',
-											'label' => __('Max', 'fw'),
+											'label' => __( 'Max', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -164,13 +169,14 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 			),
 			array(
 				'g4' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'info' => array(
 								'type'  => 'textarea',
-								'label' => __('Instructions for Users', 'fw'),
-								'desc'  => __('The users will see this instructions in the tooltip near the field', 'fw'),
+								'label' => __( 'Instructions for Users', 'fw' ),
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field',
+									'fw' ),
 							)
 						),
 					)

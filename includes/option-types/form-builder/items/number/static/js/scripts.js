@@ -12,14 +12,14 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 					'<div class="fw-form-item-controls-right fw-col-xs-5 fw-text-right">'+
 						'<div class="fw-form-item-control-buttons">'+
 							'<a class="fw-form-item-control-required dashicons<% if (required) { %> required<% } %>" data-hover-tip="<%- toggle_required %>" href="#" onclick="return false;" >*</a>'+
-							'<a class="fw-form-item-control-edit dashicons dashicons-welcome-write-blog" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
+							'<a class="fw-form-item-control-edit dashicons dashicons-edit" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
 							'<a class="fw-form-item-control-remove dashicons dashicons-no-alt" data-hover-tip="<%- remove %>" href="#" onclick="return false;" ></a>'+
 						'</div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="fw-form-item-preview">'+
 					'<div class="fw-form-item-preview-label">'+
-						'<div class="fw-form-item-preview-label-wrapper"><label><%- label %></label> <span <% if (required) { %>class="required"<% } %>>*</span></div>'+
+						'<div class="fw-form-item-preview-label-wrapper"><label data-hover-tip="<%- edit_label %>"><%- label %></label> <span <% if (required) { %>class="required"<% } %>>*</span></div>'+
 						'<div class="fw-form-item-preview-label-edit"><!-- --></div>'+
 					'</div>'+
 					'<div class="fw-form-item-preview-input"><input type="text" placeholder="<%- placeholder %>" value="<%- default_value %>"></div>'+
@@ -70,7 +70,8 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 		},
 		render: function () {
 			this.defaultRender({
-				label: fw.opg('label', this.model.get('options')),
+				label: fw.opg('label', this.model.get('options')) || localized.l10n.item_title,
+				edit_label: localized.l10n.edit_label,
 				required: fw.opg('required', this.model.get('options')),
 				placeholder: fw.opg('placeholder', this.model.get('options')),
 				default_value: fw.opg('default_value', this.model.get('options')),

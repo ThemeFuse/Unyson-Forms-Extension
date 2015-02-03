@@ -16,7 +16,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title">'.
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Multiple Choices field', 'fw' ) . '">'.
 						'<div class="item-type-icon">'.
 							'<img src="'. esc_attr($this->get_uri( '/static/images/icon.png' )) .'" />'.
 						'</div>'.
@@ -79,15 +79,15 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 							'label' => array(
 								'type'  => 'text',
 								'label' => __('Label', 'fw'),
-								'desc'  => __('The label of the field that will be displayed to the users', 'fw'),
+								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
 								'value' => __('Multiple Choice', 'fw'),
 							)
 						),
 						array(
 							'required' => array(
 								'type'  => 'switch',
-								'label' => __('Mandatory Field?', 'fw'),
-								'desc'  => __('If this field is mandatory for the user', 'fw'),
+								'label' => __('Mandatory Field', 'fw'),
+								'desc'  => __( 'Make this field mandatory?', 'fw' ),
 								'value' => true,
 							)
 						),
@@ -102,7 +102,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 							'choices' => array(
 								'type'  => 'addable-option',
 								'label' => __('Choices', 'fw'),
-								'desc' => __('Choose your filed layout', 'fw'),
+								'desc' => __('Add choice', 'fw'),
 								'option' => array(
 									'type' => 'text',
 								),
@@ -111,8 +111,8 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 						array(
 							'randomize' => array(
 								'type'  => 'switch',
-								'label' => __('Randomize?', 'fw'),
-								'desc'  => __('Choose if you want your choices to be displayed in a random order', 'fw'),
+								'label' => __('Randomize', 'fw'),
+								'desc'  => __('Do you want choices to be displayed in random order?', 'fw'),
 								'value' => false,
 							)
 						),
@@ -123,7 +123,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 				'layout' => array(
 					'type'  => 'select',
 					'label' => __('Field Layout', 'fw'),
-					'desc' => __('Choose your filed layout', 'fw'),
+					'desc' => __('Select choice display layout', 'fw'),
 					'choices' => array(
 						'one-column'    => __('One column', 'fw'),
 						'two-columns'   => __('Two columns', 'fw'),
@@ -136,7 +136,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 				'info' => array(
 					'type'  => 'textarea',
 					'label' => __('Instructions for Users', 'fw'),
-					'desc'  => __('The users will see this instructions in the tooltip near the field', 'fw'),
+					'desc'  => __('The users will see these instructions in the tooltip near the field', 'fw'),
 				)
 			),
 		);

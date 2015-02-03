@@ -12,7 +12,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 					'<div class="fw-form-item-controls-right fw-col-xs-5 fw-text-right">'+
 						'<div class="fw-form-item-control-buttons">'+
 							'<a class="fw-form-item-control-required dashicons<% if (required) { %> required<% } %>" data-hover-tip="<%- toggle_required %>" href="#" onclick="return false;" >*</a>'+
-							'<a class="fw-form-item-control-edit dashicons dashicons-welcome-write-blog" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
+							'<a class="fw-form-item-control-edit dashicons dashicons-edit" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
 							'<a class="fw-form-item-control-remove dashicons dashicons-no-alt" data-hover-tip="<%- remove %>" href="#" onclick="return false;" ></a>'+
 						'</div>'+
 					'</div>'+
@@ -22,7 +22,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 						'<div class="fw-form-item-preview-label-wrapper"><label data-hover-tip="<%- edit_label %>"><%- label %></label> <span <% if (required) { %>class="required"<% } %>>*</span></div>'+
 						'<div class="fw-form-item-preview-label-edit"><!-- --></div>'+
 					'</div>'+
-					'<div class="fw-form-item-preview-input"><input type="text" placeholder="<%- placeholder %>" value="<%- default_value %>"></div>'+
+					'<div class="fw-form-item-preview-input"><input type="text" placeholder="<%- placeholder %>" value=""></div>'+
 				'</div>'+
 			'</div>'
 		),
@@ -70,9 +70,8 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 		},
 		render: function () {
 			this.defaultRender({
-				label: fw.opg('label', this.model.get('options')),
+				label: fw.opg('label', this.model.get('options')) || localized.l10n.item_title,
 				required: fw.opg('required', this.model.get('options')),
-				default_value: fw.opg('default_value', this.model.get('options')),
 				placeholder: fw.opg('placeholder', this.model.get('options')),
 				toggle_required: localized.l10n.toggle_required,
 				edit: localized.l10n.edit,
@@ -126,8 +125,6 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 				// clone to not modify by reference, else model.set() will not trigger the 'change' event
 				this.model.get('options')
 			);
-
-			values.default_value = this.$('.fw-form-item-preview-input input').val();
 
 			this.model.set('options', values);
 		},

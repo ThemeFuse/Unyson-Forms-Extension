@@ -24,18 +24,16 @@
 			},
 			template: _.template(
 				'<div class="pb-item-type-contact-form pb-item-type-simple pb-item <% if (hasOptions) { print(' + '"has-options"' + ')} %>">' +
-					'<div class="panel fw-row">' +
-						'<%- title %>' +
-						'<div class="controls">' +
-							'<% if (!isMailer) { %>' +
-							'<i class="dashicons dashicons-info contact-form-item-mailer" data-hover-tip="<%- configureMailer %>"></i>' +
-							'<%  } %>' +
-							'<% if (hasOptions) { %>' +
-							'<i class="dashicons dashicons-welcome-write-blog edit-options"></i>' +
-							'<%  } %>' +
-							'<i class="dashicons dashicons-admin-page contact-form-item-clone"></i>' +
-							'<i class="dashicons dashicons-no contact-form-item-delete"></i>' +
-						'</div>' +
+					'<img src="<%- image %>"><%- title %>' +
+					'<div class="controls">' +
+						'<% if (!isMailer) { %>' +
+						'<i class="dashicons dashicons-info contact-form-item-mailer" data-hover-tip="<%- configureMailer %>"></i>' +
+						'<%  } %>' +
+						'<% if (hasOptions) { %>' +
+						'<i class="dashicons dashicons-edit edit-options"></i>' +
+						'<%  } %>' +
+						'<i class="dashicons dashicons-admin-page contact-form-item-clone"></i>' +
+						'<i class="dashicons dashicons-no contact-form-item-delete"></i>' +
 					'</div>' +
 				'</div>'
 			),
@@ -100,6 +98,7 @@
 					modalSize: itemData.popup_size,
 					templateData: {
 						title: itemData.title,
+						image: itemData.image,
 						isMailer : itemData.mailer,
 						configureMailer : itemData.configureMailer,
 						hasOptions: !!itemData.options

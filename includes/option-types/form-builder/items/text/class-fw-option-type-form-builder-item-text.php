@@ -15,7 +15,7 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title">' .
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Single Line Text', 'fw' ) . '">' .
 					'<div class="item-type-icon"><img src="' . esc_attr( $this->get_uri( '/static/images/icon.png' ) ) . '" /></div>' .
 					'<div class="item-type-title">' . __( 'Single Line Text', 'fw' ) . '</div>' .
 					'</div>'
@@ -72,15 +72,15 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 							'label' => array(
 								'type'  => 'text',
 								'label' => __( 'Label', 'fw' ),
-								'desc'  => __( 'The label of the field that will be displayed to the users', 'fw' ),
+								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
 								'value' => __( 'Single Line Text', 'fw' ),
 							)
 						),
 						array(
 							'required' => array(
 								'type'  => 'switch',
-								'label' => __( 'Mandatory Field?', 'fw' ),
-								'desc'  => __( 'If this field is mandatory for the user', 'fw' ),
+								'label' => __( 'Mandatory Field', 'fw' ),
+								'desc'  => __( 'Make this field mandatory?', 'fw' ),
 								'value' => true,
 							)
 						),
@@ -95,12 +95,14 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 							'placeholder' => array(
 								'type'  => 'text',
 								'label' => __( 'Placeholder', 'fw' ),
+								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
 						array(
 							'default_value' => array(
 								'type'  => 'text',
 								'label' => __( 'Default Value', 'fw' ),
+								'desc' => __( 'This text will be used as field default value', 'fw' ),
 							)
 						)
 					)
@@ -121,7 +123,9 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 								'picker'  => array(
 									'constraint' => array(
 										'label'   => __( 'Restrictions', 'fw' ),
+										'desc' => __( 'Set characters or words restrictions for this field', 'fw' ),
 										'type'    => 'radio',
+										'inline'  => true,
 										'choices' => array(
 											'characters' => __( 'Characters', 'fw' ),
 											'words'      => __( 'Words', 'fw' )
@@ -131,13 +135,15 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 								'choices' => array(
 									'characters' => array(
 										'min' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Min', 'fw' ),
+											'desc' => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Max', 'fw' ),
+											'desc' => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -167,7 +173,7 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 							'info' => array(
 								'type'  => 'textarea',
 								'label' => __( 'Instructions for Users', 'fw' ),
-								'desc'  => __( 'The users will see this instructions in the tooltip near the field',
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field',
 									'fw' ),
 							)
 						),

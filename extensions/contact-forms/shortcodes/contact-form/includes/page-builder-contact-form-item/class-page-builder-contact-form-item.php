@@ -38,12 +38,13 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	}
 
 	private function get_item_data() {
-
+		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
 		$data = array(
 			'title' => __( 'Contact Form', 'fw' ),
 			'mailer' => fw_ext_mailer_is_configured(),
 			'configureMailer' => __( 'Configure Mailer', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
+			'image' => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" )
 		);
 
 		$options = $this->get_shortcode_options();

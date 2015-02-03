@@ -47,17 +47,20 @@ $options = array(
 								'options' => array(
 									'submit_button_text' => array(
 										'type'  => 'text',
-										'label' => __( 'Submit button', 'fw' ),
+										'label' => __( 'Submit Button', 'fw' ),
+										'desc' => __( 'This text will appear in submit button', 'fw' ),
 										'value' => __( 'Send', 'fw' ),
 									),
 									'success_message'    => array(
 										'type'  => 'text',
-										'label' => __( 'Success message', 'fw' ),
+										'label' => __( 'Success Message', 'fw' ),
+										'desc' => __( 'This text will be displayed when the form will successfully send', 'fw' ),
 										'value' => __( 'Message sent!', 'fw' ),
 									),
 									'failure_message'    => array(
 										'type'  => 'text',
-										'label' => __( 'Failure message', 'fw' ),
+										'label' => __( 'Failure Message', 'fw' ),
+										'desc' => __( 'This text will be displayed when the form will fail to be sent', 'fw' ),
 										'value' => __( 'Oops something went wrong.', 'fw' ),
 									),
 								),
@@ -67,9 +70,9 @@ $options = array(
 								'options' => array(
 									'email_to' => array(
 										'type'  => 'text',
-										'label' => __( 'Email to', 'fw' ),
-										'desc'  => __( 'The form will be sent to this email address. We recommend you to use an email that you verify often',
-											'fw' ),
+										'label' => __( 'Email To', 'fw' ),
+										'help' => __( 'We recommend you to use an email that you verify often', 'fw' ),
+										'desc'  => __( 'The form will be sent to this email address.', 'fw' ),
 									),
 								),
 							),
