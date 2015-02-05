@@ -45,17 +45,27 @@ $options = array(
 							'form_text_settings'  => array(
 								'type'    => 'group',
 								'options' => array(
-									'submit_button_text' => array(
-										'type'  => 'text',
-										'label' => __( 'Submit Button', 'fw' ),
-										'desc' => __( 'This text will appear in submit button', 'fw' ),
-										'value' => __( 'Send', 'fw' ),
+									'submit-button-group' => array(
+										'type' => 'group',
+										'options' => array(
+											'submit_button_text' => array(
+												'type'  => 'text',
+												'label' => __( 'Submit Button', 'fw' ),
+												'desc' => __( 'This text will appear in submit button', 'fw' ),
+												'value' => __( 'Send', 'fw' ),
+											),
+										)
 									),
-									'success_message'    => array(
-										'type'  => 'text',
-										'label' => __( 'Success Message', 'fw' ),
-										'desc' => __( 'This text will be displayed when the form will successfully send', 'fw' ),
-										'value' => __( 'Message sent!', 'fw' ),
+									'success-group' => array(
+										'type' => 'group',
+										'options' => array(
+											'success_message'    => array(
+												'type'  => 'text',
+												'label' => __( 'Success Message', 'fw' ),
+												'desc' => __( 'This text will be displayed when the form will successfully send', 'fw' ),
+												'value' => __( 'Message sent!', 'fw' ),
+											),
+										)
 									),
 									'failure_message'    => array(
 										'type'  => 'text',
