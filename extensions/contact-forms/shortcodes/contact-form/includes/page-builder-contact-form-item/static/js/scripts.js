@@ -68,13 +68,13 @@
 				var index = this.model.collection.indexOf(this.model),
 					attributes = this.model.toJSON(),
 					_items = attributes['_items'],
-					clonedColumn;
+					clonedContactForm;
 
 				delete attributes['_items'];
 
-				clonedColumn = new PageBuilderContactFormItem(attributes);
-				this.model.collection.add(clonedColumn, {at: index + 1});
-				clonedColumn.get('_items').reset(_items);
+				clonedContactForm = new PageBuilderContactFormItem(attributes);
+				this.model.collection.add(clonedContactForm, {at: index + 1});
+				clonedContactForm.get('_items').reset(_items);
 				return false;
 			},
 			removeItem: function () {
