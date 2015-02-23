@@ -39,7 +39,9 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 					$submit_button = $this->render_view(
 						'submit',
 						array(
-							'submit_button_text' => $data['submit_button_text']
+							'submit_button_text' => empty($data['submit_button_text'])
+								?  __( 'Submit', 'fw' ) :
+								$data['submit_button_text']
 						)
 					)
 				)
