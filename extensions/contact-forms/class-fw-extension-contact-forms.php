@@ -39,7 +39,9 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 					$submit_button = $this->render_view(
 						'submit',
 						array(
-							'submit_button_text' => $data['submit_button_text']
+							'submit_button_text' => empty($data['submit_button_text'])
+								?  __( 'Submit', 'fw' ) :
+								$data['submit_button_text']
 						)
 					)
 				)
@@ -49,6 +51,15 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
 	public function process_form( $form_values, $data ) {
 		$flash_id = 'fw_ext_contact_form_process';
+
+		if ( empty( $form_values ) ) {
+			FW_Flash_Messages::add(
+				$flash_id,
+				__( 'Unable to process the form', 'fw' ),
+				'error'
+			);
+			return;
+		}
 
 		$form_id = FW_Request::POST( 'fw_ext_forms_form_id' );
 
