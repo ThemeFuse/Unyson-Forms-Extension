@@ -1,40 +1,38 @@
-<?php if (!defined('FW')) die('Forbidden');
+<?php if ( ! defined( 'FW' ) ) {
+	die( 'Forbidden' );
+}
 
-class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Builder_Item
-{
-	public function get_type()
-	{
+class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Builder_Item {
+	public function get_type() {
 		return 'website';
 	}
 
 	private function get_uri( $append = '' ) {
-		return fw_get_framework_directory_uri('/extensions/forms/includes/option-types/'. $this->get_builder_type() .'/items/'. $this->get_type() . $append);
+		return fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_builder_type() . '/items/' . $this->get_type() . $append );
 	}
 
-	public function get_thumbnails()
-	{
+	public function get_thumbnails() {
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Website field', 'fw' ) . '">'.
-						'<div class="item-type-icon">'.
-							'<img src="'. esc_attr($this->get_uri('/static/images/icon.png')) .'" />'.
-						'</div>'.
-						'<div class="item-type-title">'. __('Website', 'fw') .'</div>'.
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Website field', 'fw' ) . '">' .
+					'<div class="item-type-icon">' .
+					'<img src="' . esc_attr( $this->get_uri( '/static/images/icon.png' ) ) . '" />' .
+					'</div>' .
+					'<div class="item-type-title">' . __( 'Website', 'fw' ) . '</div>' .
 					'</div>'
 			)
 		);
 	}
 
-	public function enqueue_static()
-	{
+	public function enqueue_static() {
 		wp_enqueue_style(
-			'fw-builder-'. $this->get_builder_type() .'-item-'. $this->get_type(),
+			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
 			$this->get_uri( '/static/css/styles.css' )
 		);
 
 		wp_enqueue_script(
-			'fw-builder-'. $this->get_builder_type() .'-item-'. $this->get_type(),
+			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
 			$this->get_uri( '/static/js/scripts.js' ),
 			array(
 				'fw-events',
@@ -44,30 +42,29 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 		);
 
 		wp_localize_script(
-			'fw-builder-'. $this->get_builder_type() .'-item-'. $this->get_type(),
-			'fw_form_builder_item_type_'. $this->get_type(),
+			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
+			'fw_form_builder_item_type_' . $this->get_type(),
 			array(
-				'l10n' => array(
-					'item_title'        => __('Website', 'fw'),
-					'label'             => __('Label', 'fw'),
-					'toggle_required'   => __('Toggle mandatory field', 'fw'),
-					'edit'              => __('Edit', 'fw'),
-					'delete'            => __('Delete', 'fw'),
-					'edit_label'        => __('Edit Label', 'fw'),
+				'l10n'     => array(
+					'item_title'      => __( 'Website', 'fw' ),
+					'label'           => __( 'Label', 'fw' ),
+					'toggle_required' => __( 'Toggle mandatory field', 'fw' ),
+					'edit'            => __( 'Edit', 'fw' ),
+					'delete'          => __( 'Delete', 'fw' ),
+					'edit_label'      => __( 'Edit Label', 'fw' ),
 				),
 				'options'  => $this->get_options(),
 				'defaults' => array(
 					'type'    => $this->get_type(),
-					'options' => fw_get_options_values_from_input($this->get_options(), array())
+					'options' => fw_get_options_values_from_input( $this->get_options(), array() )
 				)
 			)
 		);
 
-		fw()->backend->enqueue_options_static($this->get_options());
+		fw()->backend->enqueue_options_static( $this->get_options() );
 	}
 
-	private function get_options()
-	{
+	private function get_options() {
 		return array(
 			array(
 				'g1' => array(
@@ -100,14 +97,14 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 							'placeholder' => array(
 								'type'  => 'text',
 								'label' => __( 'Placeholder', 'fw' ),
-								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
+								'desc'  => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
 						array(
 							'default_value' => array(
 								'type'  => 'text',
 								'label' => __( 'Default Value', 'fw' ),
-								'desc' => __( 'This text will be used as field default value', 'fw' ),
+								'desc'  => __( 'This text will be used as field default value', 'fw' ),
 							)
 						)
 					)
@@ -115,13 +112,14 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 			),
 			array(
 				'g4' => array(
-					'type' => 'group',
+					'type'    => 'group',
 					'options' => array(
 						array(
 							'info' => array(
 								'type'  => 'textarea',
-								'label' => __('Instructions for Users', 'fw'),
-								'desc'  => __('The users will see these instructions in the tooltip near the field', 'fw'),
+								'label' => __( 'Instructions for Users', 'fw' ),
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field',
+									'fw' ),
 							)
 						),
 					)
@@ -130,10 +128,9 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 		);
 	}
 
-	protected function get_fixed_attributes($attributes)
-	{
+	protected function get_fixed_attributes( $attributes ) {
 		// do not allow sub items
-		unset($attributes['_items']);
+		unset( $attributes['_items'] );
 
 		$default_attributes = array(
 			'type'      => $this->get_type(),
@@ -143,9 +140,9 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 		);
 
 		// remove unknown attributes
-		$attributes = array_intersect_key($attributes, $default_attributes);
+		$attributes = array_intersect_key( $attributes, $default_attributes );
 
-		$attributes = array_merge($default_attributes, $attributes);
+		$attributes = array_merge( $default_attributes, $attributes );
 
 		$attributes['options'] = fw_get_options_values_from_input(
 			$this->get_options(),
@@ -158,35 +155,33 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 	/**
 	 * {@inheritdoc}
 	 */
-	public function get_value_from_attributes($attributes)
-	{
-		return $this->get_fixed_attributes($attributes);
+	public function get_value_from_attributes( $attributes ) {
+		return $this->get_fixed_attributes( $attributes );
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function frontend_render(array $item, $input_value)
-	{
+	public function frontend_render( array $item, $input_value ) {
 		$options = $item['options'];
 
 		// prepare attributes
 		{
 			$attr = array(
-				'type'  => 'text',
-				'name'  => $item['shortcode'],
-				'placeholder'  => $options['placeholder'],
-				'value' => is_null($input_value) ? $options['default_value'] : $input_value,
-				'id'    => 'id-'. fw_unique_increment(),
+				'type'        => 'text',
+				'name'        => $item['shortcode'],
+				'placeholder' => $options['placeholder'],
+				'value'       => is_null( $input_value ) ? $options['default_value'] : $input_value,
+				'id'          => 'id-' . fw_unique_increment(),
 			);
 
-			if ($options['required']) {
+			if ( $options['required'] ) {
 				$attr['required'] = 'required';
 			}
 		}
 
 		return fw_render_view(
-			$this->locate_path('/views/view.php', dirname(__FILE__) .'/view.php'),
+			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
 			array(
 				'item' => $item,
 				'attr' => $attr,
@@ -197,35 +192,38 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 	/**
 	 * {@inheritdoc}
 	 */
-	public function frontend_validate(array $item, $input_value)
-	{
+	public function frontend_validate( array $item, $input_value ) {
 		$options = $item['options'];
 
 		$messages = array(
 			'required'  => str_replace(
-				array('{label}'),
-				array($options['label']),
-				__('This {label} field is required', 'fw')
+				array( '{label}' ),
+				array( $options['label'] ),
+				__( 'This {label} field is required', 'fw' )
 			),
 			'incorrect' => str_replace(
-				array('{label}'),
-				array($options['label']),
-				__('This {label} field must be a valid website name', 'fw')
+				array( '{label}' ),
+				array( $options['label'] ),
+				__( 'This {label} field must be a valid website name', 'fw' )
 			),
 		);
 
-		if ($options['required'] && !fw_strlen(trim($input_value))) {
+		if ( ! $options['required'] && ! fw_strlen( trim( $input_value ) ) ) {
+			return null;
+		}
+
+		if ( $options['required'] && ! fw_strlen( trim( $input_value ) ) ) {
 			return $messages['required'];
 		}
 
-		if (!preg_match('/^https?:\/\//', $input_value)) {
-			$input_value = 'http://'. $input_value;
+		if ( ! preg_match( '/^https?:\/\//', $input_value ) ) {
+			$input_value = 'http://' . $input_value;
 		}
 
-		if (!empty($input_value) && !filter_var($input_value, FILTER_VALIDATE_URL)) {
+		if ( ! empty( $input_value ) && ! filter_var( $input_value, FILTER_VALIDATE_URL ) ) {
 			return $messages['incorrect'];
 		}
 	}
 }
 
-FW_Option_Type_Builder::register_item_type('FW_Option_Type_Form_Builder_Item_Website');
+FW_Option_Type_Builder::register_item_type( 'FW_Option_Type_Form_Builder_Item_Website' );
