@@ -167,7 +167,7 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 
 			if ( $error ) {
 				$errors[ $item['shortcode'] ] = $error;
-				break;
+				continue;
 			}
 
 			if ( isset( $item['_items'] ) ) {
