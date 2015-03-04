@@ -11,6 +11,6 @@ if ( empty( $title ) ) {
 <div class="header title">
 	<h2><?php echo $title; ?></h2>
 	<?php if( !empty($subtitle) ) : ?>
-	    <p><?php echo $subtitle; ?></p>
+		<p><?php echo $subtitle; ?></p>
 	<?php endif ?>
 </div>
