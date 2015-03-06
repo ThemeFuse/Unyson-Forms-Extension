@@ -108,14 +108,15 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			FW_Flash_Messages::add(
 				$flash_id,
 				$this->get_db_data( $this->get_name() . '-' . $form_id . '/success_message',
-					__( 'Message sent!', 'fw' ) )
+					__( 'Message sent!', 'fw' ) ),
+				'success'
 			);
 		} else {
 			FW_Flash_Messages::add(
 				$flash_id,
 				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message',
 					__( 'Oops something went wrong.', 'fw' ) ),
-				' <em>(' . $result['message'] . ')</em>'
+				'error'
 			);
 		}
 	}
