@@ -149,7 +149,7 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 	 */
 	public function frontend_validate( array $items, array $input_values ) {
 		/**
-		 * @var FW_Option_Type_Builder_Item[] $item_types
+		 * @var FW_Option_Type_Form_Builder_Item[] $item_types
 		 */
 		$item_types = $this->get_item_types();
 
@@ -213,7 +213,9 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 				trigger_error( 'Form item duplicate shortcode: ' . $item['shortcode'], E_USER_WARNING );
 			}
 
-			$values[ $item['shortcode'] ] = isset( $input_values[ $item['shortcode'] ] ) ? $input_values[ $item['shortcode'] ] : null;
+			$values[ $item['shortcode'] ] = isset( $input_values[ $item['shortcode'] ] )
+				? $item_types[ $item['type'] ]->get_value_from_item( $input_values[ $item['shortcode'] ] )
+				: null;
 
 			if ( isset( $item['_items'] ) ) {
 				$sub_values = $this->frontend_get_value_from_items( $item['_items'], $input_values );
@@ -263,13 +265,13 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 				$html .= '</div><div class="fw-row">';
 				$width = 0;
 			} elseif ( isset( $items[ $counter + 1 ] )
-			           && ( $width + $this->calculate_width( $items[$counter + 1]['width'] ) > 1 )
+			           && ( $width + $this->calculate_width( $items[ $counter + 1 ]['width'] ) > 1 )
 			) {
 				$html .= '</div><div class="fw-row">';
 				$width = 0;
 			}
 
-			$counter++;
+			$counter ++;
 		}
 
 		return $html . '</div>';

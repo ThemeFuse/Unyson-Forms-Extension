@@ -53,4 +53,16 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	public function visual_only() {
 		return false;
 	}
+
+	/**
+	 * Returns the value of the input after the form successfully was submitted
+	 * This method ca be used in order to filter of the modify the submit ted value
+	 *
+	 * @param mixed $value
+	 *
+	 * @return mixed
+	 */
+	public function get_value_from_item( $value ) {
+		return $value;
+	}
 }
