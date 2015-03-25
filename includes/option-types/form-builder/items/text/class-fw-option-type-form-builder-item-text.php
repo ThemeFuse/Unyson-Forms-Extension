@@ -312,7 +312,7 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 			'required'                => str_replace(
 				array( '{label}' ),
 				array( $options['label'] ),
-				__( 'This {label} field is required', 'fw' )
+				__( 'The {label} field is required', 'fw' )
 			),
 			'characters_min_singular' => str_replace(
 				array( '{label}' ),

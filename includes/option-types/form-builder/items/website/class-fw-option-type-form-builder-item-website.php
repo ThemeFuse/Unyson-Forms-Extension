@@ -199,12 +199,12 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 			'required'  => str_replace(
 				array( '{label}' ),
 				array( $options['label'] ),
-				__( 'This {label} field is required', 'fw' )
+				__( 'The {label} field is required', 'fw' )
 			),
 			'incorrect' => str_replace(
 				array( '{label}' ),
 				array( $options['label'] ),
-				__( 'This {label} field must be a valid website name', 'fw' )
+				__( 'The {label} field must be a valid website name', 'fw' )
 			),
 		);
 

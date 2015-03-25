@@ -220,7 +220,7 @@ class FW_Option_Type_Form_Builder_Item_Select extends FW_Option_Type_Form_Builde
 			'required' => str_replace(
 				array('{label}'),
 				array($options['label']),
-				__('This {label} field is required', 'fw')
+				__('The {label} field is required', 'fw')
 			),
 			'not_existing_choice' => str_replace(
 				array('{label}'),
