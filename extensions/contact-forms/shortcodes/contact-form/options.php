@@ -45,6 +45,17 @@ $options = array(
 							'form_text_settings'  => array(
 								'type'    => 'group',
 								'options' => array(
+									'subject-group' => array(
+										'type' => 'group',
+										'options' => array(
+											'subject_message'    => array(
+												'type'  => 'text',
+												'label' => __( 'Subject Message', 'fw' ),
+												'desc' => __( 'This text will be used as subject message for the email', 'fw' ),
+												'value' => __( 'New message', 'fw' ),
+											),
+										)
+									),
 									'submit-button-group' => array(
 										'type' => 'group',
 										'options' => array(

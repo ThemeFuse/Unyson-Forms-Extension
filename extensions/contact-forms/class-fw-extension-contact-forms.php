@@ -96,7 +96,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
 		$result = fw_ext_mailer_send_mail(
 			$to,
-			get_the_title( $form_id ),
+			$this->get_db_data( $this->get_name() . '-' . $form_id . '/subject_message', '' ),
 			$this->render_view( 'email', array(
 				'form_values'       => $form_values,
 				'shortcode_to_item' => $data['shortcode_to_item'],
