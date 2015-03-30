@@ -115,7 +115,8 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			FW_Flash_Messages::add(
 				$flash_id,
 				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message',
-					__( 'Oops something went wrong.', 'fw' ) ),
+					__( 'Oops something went wrong.', 'fw' ) )
+				. ' <em style="color:transparent;">'. $result['message'] .'</em>',
 				'error'
 			);
 		}
