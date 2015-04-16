@@ -100,17 +100,34 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	public function get_value_from_attributes( $attributes ) {
 		$attributes['type'] = $this->get_type();
 
-		/*
-		 * when saving the modal, the options values go into the
-		 * 'atts' key, if it is not present it could be
-		 * because of two things:
-		 * 1. The shortcode does not have options
-		 * 2. The user did not open or save the modal (which will be more likely the case)
-		 */
-		if ( ! isset( $attributes['atts'] ) ) {
-			$options = $this->get_shortcode_options();
-			if ( ! empty( $options ) ) {
-				$attributes['atts'] = fw_get_options_values_from_input( $options, array() );
+		$options = $this->get_shortcode_options();
+		if ( ! empty( $options ) ) {
+			if (empty($attributes['atts'])) {
+				/**
+				 * The options popup was never opened and there are no attributes.
+				 * Extract options default values.
+				 */
+				$attributes['atts'] = fw_get_options_values_from_input(
+					$options, array()
+				);
+			} else {
+				/**
+				 * There are saved attributes.
+				 * But we need to execute the _get_value_from_input() method for all options,
+				 * because some of them may be (need to be) changed (auto-generated) https://github.com/ThemeFuse/Unyson/issues/275
+				 * Add the values to $option['value']
+				 */
+				$options = fw_extract_only_options($options);
+
+				foreach ($attributes['atts'] as $option_id => $option_value) {
+					if (isset($options[$option_id])) {
+						$options[$option_id]['value'] = $option_value;
+					}
+				}
+
+				$attributes['atts'] = fw_get_options_values_from_input(
+					$options, array()
+				);
 			}
 		}
 
@@ -119,8 +136,12 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 
 	public function get_shortcode_data( $atts = array() ) {
 
+		$default_width = fw_ext_builder_get_item_width($this->get_builder_type());
+		end($default_width); // move to the last width (usually it's the biggest)
+		$default_width = key($default_width);
+
 		$return_atts = array(
-			'width' => '1_1'
+			'width' => $default_width
 		);
 		if ( isset( $atts['atts'] ) ) {
 			$return_atts = array_merge( $return_atts, $atts['atts'] );
