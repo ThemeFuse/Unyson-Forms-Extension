@@ -93,14 +93,16 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			return;
 		}
 
-
+		$entry_data = array(
+			'form_values'       => $form_values,
+			'shortcode_to_item' => $data['shortcode_to_item'],
+			);
+			
 		$result = fw_ext_mailer_send_mail(
 			$to,
 			$this->get_db_data( $this->get_name() . '-' . $form_id . '/subject_message', '' ),
-			$this->render_view( 'email', array(
-				'form_values'       => $form_values,
-				'shortcode_to_item' => $data['shortcode_to_item'],
-			) )
+			$this->render_view( 'email', $entry_data ),
+			$entry_data
 		);
 
 
