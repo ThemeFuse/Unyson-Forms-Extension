@@ -30,7 +30,8 @@ $options = array(
 									)
 								)
 							) )
-						)
+						),
+						'fixed_header' => true,
 					),
 				),
 			),
