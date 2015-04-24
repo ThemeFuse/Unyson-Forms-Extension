@@ -1,5 +1,8 @@
-<?php if (!defined('FW')) die('Forbidden');
+<?php if ( ! defined( 'FW' ) ) {
+	die( 'Forbidden' );
+}
 /**
+ * @var string $form_id
  * @var string $form_html
  */
 ?>

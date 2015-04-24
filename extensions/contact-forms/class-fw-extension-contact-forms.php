@@ -34,14 +34,16 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		return $this->render_view(
 			'form',
 			array(
+				'form_id'   => $form_id,
 				'form_html' => fw_ext( 'forms' )->render_form(
 					$form_id, $form, $this->get_name(),
 					$submit_button = $this->render_view(
 						'submit',
 						array(
-							'submit_button_text' => empty($data['submit_button_text'])
-								?  __( 'Submit', 'fw' ) :
-								$data['submit_button_text']
+							'submit_button_text' => empty( $data['submit_button_text'] )
+								? __( 'Submit', 'fw' ) :
+								$data['submit_button_text'],
+							'form_id'            => $form_id
 						)
 					)
 				)
@@ -58,6 +60,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 				__( 'Unable to process the form', 'fw' ),
 				'error'
 			);
+
 			return;
 		}
 
@@ -117,7 +120,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 				$flash_id,
 				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message',
 					__( 'Oops something went wrong.', 'fw' ) )
-				. ' <em style="color:transparent;">'. $result['message'] .'</em>',
+				. ' <em style="color:transparent;">' . $result['message'] . '</em>',
 				'error'
 			);
 		}
@@ -147,5 +150,27 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 				'error'
 			);
 		}
+	}
+
+	/**
+	 * Returns value of the form option
+	 *
+	 * @param string $id
+	 * @param null|string $multikey
+	 *
+	 * @return mixed|null
+	 */
+	public function get_option( $id, $multikey = null ) {
+		$form = $this->get_db_data( $this->get_name() . '-' . $id );
+
+		if ( empty( $form ) ) {
+			return null;
+		}
+
+		if ( is_null( $multikey ) ) {
+			return $form;
+		}
+
+		return fw_akg( $multikey, $form );
 	}
 }
