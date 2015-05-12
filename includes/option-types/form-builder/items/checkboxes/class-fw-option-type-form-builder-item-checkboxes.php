@@ -60,6 +60,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 				'options'  => $this->get_options(),
 				'defaults' => array(
 					'type'    => $this->get_type(),
+					'width' => fw_ext('forms')->get_config('items/width'),
 					'options' => fw_get_options_values_from_input($this->get_options(), array())
 				)
 			)
