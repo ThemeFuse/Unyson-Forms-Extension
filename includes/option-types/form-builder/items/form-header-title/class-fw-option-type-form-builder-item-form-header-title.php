@@ -35,8 +35,8 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 			'fw_form_builder_item_type_' . str_replace( '-', '_', $this->get_type() ),
 			array(
 				'l10n'     => array(
-					'edit_title'      => __( 'Edit Title', 'fw' ),
-					'edit_subtitle'      => __( 'Edit Subtitle', 'fw' ),
+					'edit_title'    => __( 'Edit Title', 'fw' ),
+					'edit_subtitle' => __( 'Edit Subtitle', 'fw' ),
 				),
 				'options'  => $this->get_options(),
 				'defaults' => array(
@@ -51,7 +51,7 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 
 	private function get_options() {
 		return array(
-			'title' => array(
+			'title'    => array(
 				'type'  => 'text',
 				'label' => __( 'Title', 'fw' ),
 				'desc'  => __( 'The title will be displayed on contact form header', 'fw' ),
@@ -89,16 +89,16 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 		{
 			$only_options = array();
 
-			foreach (fw_extract_only_options($this->get_options()) as $option_id => $option) {
-				if (array_key_exists($option_id, $attributes['options'])) {
-					$option['value'] = $attributes['options'][$option_id];
+			foreach ( fw_extract_only_options( $this->get_options() ) as $option_id => $option ) {
+				if ( array_key_exists( $option_id, $attributes['options'] ) ) {
+					$option['value'] = $attributes['options'][ $option_id ];
 				}
-				$only_options[$option_id] = $option;
+				$only_options[ $option_id ] = $option;
 			}
 
-			$attributes['options'] = fw_get_options_values_from_input($only_options, array());
+			$attributes['options'] = fw_get_options_values_from_input( $only_options, array() );
 
-			unset($only_options, $option_id, $option);
+			unset( $only_options, $option_id, $option );
 		}
 
 		return $attributes;
@@ -118,7 +118,7 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 		return fw_render_view(
 			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
 			array(
-				'title' => $item['options']['title'],
+				'title'    => $item['options']['title'],
 				'subtitle' => $item['options']['subtitle'],
 			)
 		);
@@ -127,7 +127,8 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 	/**
 	 * {@inheritdoc}
 	 */
-	public function frontend_validate( array $item, $input_value ) {}
+	public function frontend_validate( array $item, $input_value ) {
+	}
 
 	/**
 	 * {@inheritdoc}

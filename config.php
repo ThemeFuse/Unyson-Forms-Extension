@@ -2,7 +2,7 @@
 	die( 'Forbidden' );
 }
 
-$cfg = array();
+$cfg          = array();
 $cfg['items'] = array();
 
 //Define default Forms items default width. Forms takes the middle value

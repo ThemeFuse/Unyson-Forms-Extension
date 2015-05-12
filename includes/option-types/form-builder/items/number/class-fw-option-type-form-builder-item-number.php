@@ -56,7 +56,7 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 				),
 				'defaults' => array(
 					'type'    => $this->get_type(),
-					'width' => fw_ext('forms')->get_config('items/width'),
+					'width'   => fw_ext( 'forms' )->get_config( 'items/width' ),
 					'options' => fw_get_options_values_from_input( $this->get_options(), array() )
 				)
 			)
@@ -98,14 +98,14 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							'placeholder' => array(
 								'type'  => 'text',
 								'label' => __( 'Placeholder', 'fw' ),
-								'desc' => __( 'This text will be used as field placeholder', 'fw' ),
+								'desc'  => __( 'This text will be used as field placeholder', 'fw' ),
 							)
 						),
 						array(
 							'default_value' => array(
 								'type'  => 'text',
 								'label' => __( 'Default Value', 'fw' ),
-								'desc' => __( 'This text will be used as field default value', 'fw' ),
+								'desc'  => __( 'This text will be used as field default value', 'fw' ),
 							)
 						)
 					)
@@ -126,7 +126,7 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 								'picker'  => array(
 									'constraint' => array(
 										'label'   => __( 'Restrictions', 'fw' ),
-										'desc'   => __( 'Set digits or values restrictions of this field', 'fw' ),
+										'desc'    => __( 'Set digits or values restrictions of this field', 'fw' ),
 										'type'    => 'radio',
 										'inline'  => true,
 										'choices' => array(
@@ -140,13 +140,13 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 										'min' => array(
 											'type'  => 'short-text',
 											'label' => __( 'Min', 'fw' ),
-											'desc' => __( 'Minim value', 'fw' ),
+											'desc'  => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'short-text',
 											'label' => __( 'Max', 'fw' ),
-											'desc' => __( 'Maxim value', 'fw' ),
+											'desc'  => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -154,13 +154,13 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 										'min' => array(
 											'type'  => 'text',
 											'label' => __( 'Min', 'fw' ),
-											'desc' => __( 'Minim value', 'fw' ),
+											'desc'  => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'text',
 											'label' => __( 'Max', 'fw' ),
-											'desc' => __( 'Maxim value', 'fw' ),
+											'desc'  => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -211,16 +211,16 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 		{
 			$only_options = array();
 
-			foreach (fw_extract_only_options($this->get_options()) as $option_id => $option) {
-				if (array_key_exists($option_id, $attributes['options'])) {
-					$option['value'] = $attributes['options'][$option_id];
+			foreach ( fw_extract_only_options( $this->get_options() ) as $option_id => $option ) {
+				if ( array_key_exists( $option_id, $attributes['options'] ) ) {
+					$option['value'] = $attributes['options'][ $option_id ];
 				}
-				$only_options[$option_id] = $option;
+				$only_options[ $option_id ] = $option;
 			}
 
-			$attributes['options'] = fw_get_options_values_from_input($only_options, array());
+			$attributes['options'] = fw_get_options_values_from_input( $only_options, array() );
 
-			unset($only_options, $option_id, $option);
+			unset( $only_options, $option_id, $option );
 		}
 
 		{
