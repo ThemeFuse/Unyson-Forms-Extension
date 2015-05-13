@@ -30,7 +30,7 @@
 						'<i class="dashicons dashicons-info contact-form-item-mailer" data-hover-tip="<%- configureMailer %>"></i>' +
 						'<%  } %>' +
 						'<% if (hasOptions) { %>' +
-						'<i class="dashicons dashicons-edit edit-options"></i>' +
+						'<i class="dashicons dashicons-admin-generic edit-options"></i>' +
 						'<%  } %>' +
 						'<i class="dashicons dashicons-admin-page contact-form-item-clone"></i>' +
 						'<i class="dashicons dashicons-no contact-form-item-delete"></i>' +

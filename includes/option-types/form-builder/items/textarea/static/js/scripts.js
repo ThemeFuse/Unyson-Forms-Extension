@@ -12,7 +12,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 					'<div class="fw-form-item-controls-right fw-col-xs-5 fw-text-right">'+
 						'<div class="fw-form-item-control-buttons">'+
 							'<a class="fw-form-item-control-required dashicons<% if (required) { %> required<% } %>" data-hover-tip="<%- toggle_required %>" href="#" onclick="return false;" >*</a>'+
-							'<a class="fw-form-item-control-edit dashicons dashicons-edit" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
+							'<a class="fw-form-item-control-edit dashicons dashicons-admin-generic" data-hover-tip="<%- edit %>" href="#" onclick="return false;" ></a>'+
 							'<a class="fw-form-item-control-remove dashicons dashicons-no-alt" data-hover-tip="<%- remove %>" href="#" onclick="return false;" ></a>'+
 						'</div>'+
 					'</div>'+
