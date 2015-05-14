@@ -17,6 +17,10 @@
 	opacity: 0.45;
 }
 
-.fw-backend-option .fw-form-builder-item-type-form_header_title .fw-form-item-preview-subtitle-edit .fw-builder-item-inline-text-editor input{
+.fw-option-type-form-builder .builder-item .fw-form-item-controls .fw-form-item-control-buttons > a {
+	font-size: 16px;
+}
+
+.fw-backend-option .fw-form-builder-item-type-form_header_title .fw-form-item-preview-subtitle-edit .fw-builder-item-inline-text-editor input {
 	width: 50% !important;
 }
