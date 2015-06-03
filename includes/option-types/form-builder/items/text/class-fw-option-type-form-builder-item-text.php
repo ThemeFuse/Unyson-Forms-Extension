@@ -150,13 +150,15 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 									),
 									'words'      => array(
 										'min' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Min', 'fw' ),
+											'desc'  => __( 'Minim value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
-											'type'  => 'text',
+											'type'  => 'short-text',
 											'label' => __( 'Max', 'fw' ),
+											'desc'  => __( 'Maxim value', 'fw' ),
 											'value' => ''
 										),
 									),
