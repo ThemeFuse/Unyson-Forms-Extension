@@ -39,12 +39,15 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 
 	private function get_item_data() {
 		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
-		$data = array(
-			'title' => __( 'Contact Form', 'fw' ),
-			'mailer' => fw_ext_mailer_is_configured(),
+		$data         = array(
+			'title'           => __( 'Contact Form', 'fw' ),
+			'mailer'          => fw_ext_mailer_is_configured(),
 			'configureMailer' => __( 'Configure Mailer', 'fw' ),
+			'edit'            => __( 'Edit', 'fw' ),
+			'duplicate'       => __( 'Duplicate', 'fw' ),
+			'remove'          => __( 'Remove', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
-			'image' => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" )
+			'image'           => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" )
 		);
 
 		$options = $this->get_shortcode_options();
@@ -65,7 +68,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	private function transform_options( $options ) {
 		$transformed_options = array();
 		foreach ( $options as $id => $option ) {
-			if (is_int($id)) {
+			if ( is_int( $id ) ) {
 				/**
 				 * this happens when in options array are loaded external options using fw()->theme->get_options()
 				 * and the array looks like this
@@ -76,7 +79,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 				 */
 				$transformed_options[] = $option;
 			} else {
-				$transformed_options[] = array($id => $option);
+				$transformed_options[] = array( $id => $option );
 			}
 		}
 
@@ -94,6 +97,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 				'image'       => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" ),
 			)
 		);
+
 		return $cf_thumbnail;
 	}
 
@@ -102,7 +106,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 
 		$options = $this->get_shortcode_options();
 		if ( ! empty( $options ) ) {
-			if (empty($attributes['atts'])) {
+			if ( empty( $attributes['atts'] ) ) {
 				/**
 				 * The options popup was never opened and there are no attributes.
 				 * Extract options default values.
@@ -117,11 +121,11 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 				 * because some of them may be (need to be) changed (auto-generated) https://github.com/ThemeFuse/Unyson/issues/275
 				 * Add the values to $option['value']
 				 */
-				$options = fw_extract_only_options($options);
+				$options = fw_extract_only_options( $options );
 
-				foreach ($attributes['atts'] as $option_id => $option_value) {
-					if (isset($options[$option_id])) {
-						$options[$option_id]['value'] = $option_value;
+				foreach ( $attributes['atts'] as $option_id => $option_value ) {
+					if ( isset( $options[ $option_id ] ) ) {
+						$options[ $option_id ]['value'] = $option_value;
 					}
 				}
 
@@ -136,9 +140,9 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 
 	public function get_shortcode_data( $atts = array() ) {
 
-		$default_width = fw_ext_builder_get_item_width($this->get_builder_type());
-		end($default_width); // move to the last width (usually it's the biggest)
-		$default_width = key($default_width);
+		$default_width = fw_ext_builder_get_item_width( $this->get_builder_type() );
+		end( $default_width ); // move to the last width (usually it's the biggest)
+		$default_width = key( $default_width );
 
 		$return_atts = array(
 			'width' => $default_width

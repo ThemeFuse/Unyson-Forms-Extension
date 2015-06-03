@@ -30,10 +30,10 @@
 						'<i class="dashicons dashicons-info contact-form-item-mailer" data-hover-tip="<%- configureMailer %>"></i>' +
 						'<%  } %>' +
 						'<% if (hasOptions) { %>' +
-						'<i class="dashicons dashicons-admin-generic edit-options"></i>' +
+						'<i class="dashicons dashicons-admin-generic edit-options" data-hover-tip="<%- edit %>"></i>' +
 						'<%  } %>' +
-						'<i class="dashicons dashicons-admin-page contact-form-item-clone"></i>' +
-						'<i class="dashicons dashicons-no contact-form-item-delete"></i>' +
+						'<i class="dashicons dashicons-admin-page contact-form-item-clone" data-hover-tip="<%- duplicate %>"></i>' +
+						'<i class="dashicons dashicons-no contact-form-item-delete" data-hover-tip="<%- remove %>"></i>' +
 					'</div>' +
 				'</div>'
 			),
@@ -101,6 +101,9 @@
 						image: itemData.image,
 						isMailer : itemData.mailer,
 						configureMailer : itemData.configureMailer,
+						edit : itemData.edit,
+						duplicate : itemData.duplicate,
+						remove : itemData.remove,
 						hasOptions: !!itemData.options
 					}
 				});
