@@ -222,7 +222,7 @@ class FW_Extension_Forms extends FW_Extension {
 		}
 
 		do_action('fw_ext_forms_frontend_submit', array(
-			'id' => $form_id
+			'id' => $form_id,
 			'type' => $form_type,
 			'instance' => $form_instance,
 			'process_data' => $process_data,
