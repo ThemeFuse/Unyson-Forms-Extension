@@ -24,13 +24,11 @@
  * THE SOFTWARE.
  */
 
-namespace ReCaptcha\RequestMethod;
-
 /**
  * Convenience wrapper around native socket and file functions to allow for
  * mocking.
  */
-class Socket
+class ReCaptchaSocket
 {
     private $handle = null;
 

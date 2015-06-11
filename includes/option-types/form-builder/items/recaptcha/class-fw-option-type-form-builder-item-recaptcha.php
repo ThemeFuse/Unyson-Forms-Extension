@@ -155,7 +155,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		if ( empty( $keys ) ) {
 			return $mesages['not-configured'];
 		}
-		$recaptcha          = new \ReCaptcha\ReCaptcha( $keys['secret-key'] );
+		$recaptcha          = new ReCaptcha( $keys['secret-key'] );
 		$gRecaptchaResponse = FW_Request::POST( 'g-recaptcha-response' );
 
 		if ( empty( $gRecaptchaResponse ) ) {
