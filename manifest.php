@@ -10,8 +10,6 @@ $manifest['display'] = false;
 $manifest['github_update'] = 'ThemeFuse/Unyson-Forms-Extension';
 $manifest['requirements']  = array(
 	'extensions' => array(
-		'builder' => array(
-			'min_version' => '1.1.11'
-		),
+		'builder' => array(),
 	),
 );

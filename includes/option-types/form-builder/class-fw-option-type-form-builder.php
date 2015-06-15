@@ -8,11 +8,6 @@
  */
 class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 
-	/**
-	 * @var FW_Option_Type_Builder_Item[] $item_types
-	 */
-	protected $item_types;
-
 	public function get_type() {
 		return 'form-builder';
 	}
@@ -57,19 +52,6 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 			false,
 			true
 		);
-	}
-
-	/**
-	 * @return FW_Option_Type_Builder_Item[]
-	 */
-	protected function get_item_types() {
-		if ( $this->item_types ) {
-			return $this->item_types;
-		}
-
-		$item_types = parent::get_item_types();
-
-		return apply_filters( 'fw_option_type_form_builder_exclude_items', $item_types );
 	}
 
 	/**
