@@ -1,7 +1,6 @@
 fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 	var currentItemType = 'recaptcha';
 	var localized = window['fw_form_builder_item_type_'+ currentItemType];
-	console.log( localized );
 	var ItemView = builder.classes.ItemView.extend({
 		template: _.template(
 			'<div class="fw-form-builder-item-style-default fw-form-builder-item-type-'+ currentItemType +'">'+
