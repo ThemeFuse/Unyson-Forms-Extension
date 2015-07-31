@@ -73,7 +73,6 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 			});
 		},
 		render: function () {
-            console.log( this.model.get('options') );
 			this.defaultRender({
 				label: fw.opg('label', this.model.get('options')) || localized.l10n.item_title,
 				edit_label: localized.l10n.edit_label,
