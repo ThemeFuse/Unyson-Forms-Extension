@@ -16,7 +16,7 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 
 	private function load_item_type()
 	{
-		require $this->get_declared_path('/includes/page-builder-contact-form-item/class-page-builder-contact-form-item.php');
+		require $this->get_declared_path('/includes/item/class-page-builder-contact-form-item.php');
 	}
 
 	protected function _render($atts, $content = null, $tag = '')

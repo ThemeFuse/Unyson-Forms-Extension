@@ -16,16 +16,21 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	}
 
 	public function enqueue_static() {
+		/**
+		 * @var FW_Shortcode $cf_shortcode
+		 */
 		$cf_shortcode = fw()->extensions->get( 'shortcodes' )->get_shortcode( 'contact_form' );
+		$uri = $cf_shortcode->get_declared_URI( '/includes/item/static' );
+
 		wp_enqueue_style(
 			$this->get_builder_type() . '_item_type_' . $this->get_type(),
-			$cf_shortcode->locate_URI( '/includes/page-builder-contact-form-item/static/css/styles.css' ),
+			$uri. '/css/styles.css',
 			array(),
 			fw()->theme->manifest->get_version()
 		);
 		wp_enqueue_script(
 			$this->get_builder_type() . '_item_type_' . $this->get_type(),
-			$cf_shortcode->locate_URI( '/includes/page-builder-contact-form-item/static/js/scripts.js' ),
+			$uri. '/js/scripts.js',
 			array( 'fw-events', 'underscore', 'jquery' ),
 			fw()->theme->manifest->get_version(),
 			true
@@ -38,7 +43,12 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	}
 
 	private function get_item_data() {
+		/**
+		 * @var FW_Shortcode $cf_shortcode
+		 */
 		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
+		$uri = $cf_shortcode->get_declared_URI( '/includes/item/static' );
+
 		$data         = array(
 			'title'           => __( 'Contact Form', 'fw' ),
 			'mailer'          => fw_ext_mailer_is_configured(),
@@ -47,7 +57,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 			'duplicate'       => __( 'Duplicate', 'fw' ),
 			'remove'          => __( 'Remove', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
-			'image'           => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" )
+			'image'           => $uri. '/img/page_builder.png'
 		);
 
 		$options = $this->get_shortcode_options();
@@ -87,14 +97,18 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 	}
 
 	protected function get_thumbnails_data() {
+		/**
+		 * @var FW_Shortcode $cf_shortcode
+		 */
 		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
+		$uri = $cf_shortcode->get_declared_URI( '/includes/item/static' );
 
 		$cf_thumbnail = array(
 			array(
 				'tab'         => __( 'Content Elements', 'fw' ),
 				'title'       => __( 'Contact form', 'fw' ),
-				'description' => __( "Add a Contact Form", 'fw' ),
-				'image'       => $cf_shortcode->locate_URI( "/includes/page-builder-contact-form-item/static/img/page_builder.png" ),
+				'description' => __( 'Add a Contact Form', 'fw' ),
+				'image'       => $uri. '/img/page_builder.png',
 			)
 		);
 
