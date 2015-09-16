@@ -56,7 +56,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 			'duplicate'       => __( 'Duplicate', 'fw' ),
 			'remove'          => __( 'Remove', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
-			'image'           => $cf_shortcode->get_declared_URI( '/static/img/page_builder.png' )
+			'image'           => $cf_shortcode->locate_URI( '/static/img/page_builder.png' )
 		);
 
 		$options = $this->get_shortcode_options();
@@ -106,7 +106,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 				'tab'         => __( 'Content Elements', 'fw' ),
 				'title'       => __( 'Contact form', 'fw' ),
 				'description' => __( 'Add a Contact Form', 'fw' ),
-				'image'       => $cf_shortcode->get_declared_URI( '/static/img/page_builder.png' ),
+				'image'       => $cf_shortcode->locate_URI( '/static/img/page_builder.png' ),
 			)
 		);
 
