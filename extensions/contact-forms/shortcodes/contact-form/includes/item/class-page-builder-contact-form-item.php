@@ -47,7 +47,6 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 		 * @var FW_Shortcode $cf_shortcode
 		 */
 		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
-		$uri = $cf_shortcode->get_declared_URI( '/includes/item/static' );
 
 		$data         = array(
 			'title'           => __( 'Contact Form', 'fw' ),
@@ -57,7 +56,7 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 			'duplicate'       => __( 'Duplicate', 'fw' ),
 			'remove'          => __( 'Remove', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
-			'image'           => $uri. '/img/page_builder.png'
+			'image'           => $cf_shortcode->get_declared_URI( '/static/img/page_builder.png' )
 		);
 
 		$options = $this->get_shortcode_options();
@@ -101,14 +100,13 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 		 * @var FW_Shortcode $cf_shortcode
 		 */
 		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
-		$uri = $cf_shortcode->get_declared_URI( '/includes/item/static' );
 
 		$cf_thumbnail = array(
 			array(
 				'tab'         => __( 'Content Elements', 'fw' ),
 				'title'       => __( 'Contact form', 'fw' ),
 				'description' => __( 'Add a Contact Form', 'fw' ),
-				'image'       => $uri. '/img/page_builder.png',
+				'image'       => $cf_shortcode->get_declared_URI( '/static/img/page_builder.png' ),
 			)
 		);
 
