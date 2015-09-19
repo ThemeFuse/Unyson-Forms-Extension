@@ -1,6 +1,4 @@
-<?php if ( ! defined( 'FW' ) ) {
-	die( 'Forbidden' );
-}
+<?php if ( ! defined( 'FW' ) ) die( 'Forbidden' );
 
 class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
@@ -29,13 +27,27 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		}
 
 		$form_id = $data['id'];
+
+		/**
+		 * This was made because the for is a shortcode that can't be accessed any time you want by id, because you can't know in which post it is.
+		 * This is used on frontend from submit to get info about the form by id
+		 *
+		 * fixme: this doesn't look good
+		 * fixme: this is not scalable because the data is stored in one wp_option (where all extensions store their data!),
+		 *        at one point (when there will be more forms) this will throw mysql error because sql (serialized data) is too big)
+		 */
 		$this->set_db_data( $this->get_name() . '-' . $form_id, $data );
+
+		/**
+		 * @var FW_Extension_Forms $forms_extension
+		 */
+		$forms_extension = fw_ext( 'forms' );
 
 		return $this->render_view(
 			'form',
 			array(
 				'form_id'   => $form_id,
-				'form_html' => fw_ext( 'forms' )->render_form(
+				'form_html' => $forms_extension->render_form(
 					$form_id, $form, $this->get_name(),
 					$submit_button = $this->render_view(
 						'submit',
