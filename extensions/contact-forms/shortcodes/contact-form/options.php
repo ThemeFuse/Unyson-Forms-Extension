@@ -8,8 +8,7 @@ $options = array(
 		'title'   => '',
 		'options' => array(
 			'id'       => array(
-				'type'  => 'hidden',
-				'value' => uniqid( 'contact-form-' )
+				'type'  => 'unique',
 			),
 			'builder'  => array(
 				'type'    => 'tab',
@@ -111,7 +110,7 @@ $options = array(
 						)
 					)
 				),
-			)
-		)
+			),
+		),
 	)
 );

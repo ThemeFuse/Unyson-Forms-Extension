@@ -17,7 +17,20 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		return ( empty( $form['form'] ) ? array() : $form['form'] );
 	}
 
-	private function set_form_db_data($form_id, $data) {
+	/**
+	 * @param $form_id
+	 * @param $data
+	 * * id - Form id
+	 * * form - Builder value
+	 * * email_to - Destination email
+	 * * [subject_message]
+	 * * [success_message]
+	 * * [failure_message]
+	 *
+	 * @return bool
+	 * @internal
+	 */
+	public function _set_form_db_data($form_id, $data) {
 		if (!class_exists('_FW_Ext_Contact_Form_DB_Data')) {
 			require_once dirname(__FILE__) .'/includes/helper/class--fw-ext-contact-form-db-data.php';
 		}
@@ -33,7 +46,15 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		return _FW_Ext_Contact_Form_DB_Data::get($form_id);
 	}
 
-	public function render( $data ) {
+	/**
+	 * @param array $data
+	 * * id   - form id
+	 * * form - builder value
+	 * * [submit_button_text]
+	 * @param array $view_data
+	 * @return string
+	 */
+	public function render( $data, $view_data = array() ) {
 		$form = $data['form'];
 
 		if ( empty( $form ) ) {
@@ -41,8 +62,9 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		}
 
 		$form_id = $data['id'];
-
-		$this->set_form_db_data($form_id, $data);
+		$submit_button_text = empty( $data['submit_button_text'] )
+			? __( 'Submit', 'fw' )
+			: $data['submit_button_text'];
 
 		/**
 		 * @var FW_Extension_Forms $forms_extension
@@ -54,17 +76,19 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			array(
 				'form_id'   => $form_id,
 				'form_html' => $forms_extension->render_form(
-					$form_id, $form, $this->get_name(),
-					$submit_button = $this->render_view(
+					$form_id,
+					$form,
+					$this->get_name(),
+					$this->render_view(
 						'submit',
 						array(
-							'submit_button_text' => empty( $data['submit_button_text'] )
-								? __( 'Submit', 'fw' ) :
-								$data['submit_button_text'],
-							'form_id'            => $form_id
+							'submit_button_text' => $submit_button_text,
+							'form_id' => $form_id,
+							'extra_data' => $view_data,
 						)
 					)
-				)
+				),
+				'extra_data' => $view_data,
 			)
 		);
 	}
