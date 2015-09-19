@@ -2,8 +2,7 @@
 
 class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
-	public function _init() {
-	}
+	public function _init() {}
 
 	/**
 	 * {@inheritdoc}
@@ -13,10 +12,25 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 	}
 
 	public function get_form_builder_value( $form_id ) {
-
-		$form = $this->get_db_data( $this->get_name() . '-' . $form_id );
+		$form = $this->get_form_db_data( $form_id );
 
 		return ( empty( $form['form'] ) ? array() : $form['form'] );
+	}
+
+	private function set_form_db_data($form_id, $data) {
+		if (!class_exists('_FW_Ext_Contact_Form_DB_Data')) {
+			require_once dirname(__FILE__) .'/includes/helper/class--fw-ext-contact-form-db-data.php';
+		}
+
+		return _FW_Ext_Contact_Form_DB_Data::set($form_id, $data);
+	}
+
+	private function get_form_db_data($form_id) {
+		if (!class_exists('_FW_Ext_Contact_Form_DB_Data')) {
+			require_once dirname(__FILE__) .'/includes/helper/class--fw-ext-contact-form-db-data.php';
+		}
+
+		return _FW_Ext_Contact_Form_DB_Data::get($form_id);
 	}
 
 	public function render( $data ) {
@@ -28,15 +42,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
 		$form_id = $data['id'];
 
-		/**
-		 * This was made because the for is a shortcode that can't be accessed any time you want by id, because you can't know in which post it is.
-		 * This is used on frontend from submit to get info about the form by id
-		 *
-		 * fixme: this doesn't look good
-		 * fixme: this is not scalable because the data is stored in one wp_option (where all extensions store their data!),
-		 *        at one point (when there will be more forms) this will throw mysql error because sql (serialized data) is too big)
-		 */
-		$this->set_db_data( $this->get_name() . '-' . $form_id, $data );
+		$this->set_form_db_data($form_id, $data);
 
 		/**
 		 * @var FW_Extension_Forms $forms_extension
@@ -86,7 +92,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			);
 		}
 
-		$form = $this->get_db_data( $this->get_name() . '-' . $form_id );
+		$form = $this->get_form_db_data( $form_id );
 
 		if ( empty( $form ) ) {
 			FW_Flash_Messages::add(
@@ -115,7 +121,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 
 		$result = fw_ext_mailer_send_mail(
 			$to,
-			$this->get_db_data( $this->get_name() . '-' . $form_id . '/subject_message', '' ),
+			fw_akg('subject_message', $form, ''),
 			$this->render_view( 'email', $entry_data ),
 			$entry_data
 		);
@@ -123,15 +129,13 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		if ( $result['status'] ) {
 			FW_Flash_Messages::add(
 				$flash_id,
-				$this->get_db_data( $this->get_name() . '-' . $form_id . '/success_message',
-					__( 'Message sent!', 'fw' ) ),
+				fw_akg('success_message', $form, __( 'Message sent!', 'fw' ) ),
 				'success'
 			);
 		} else {
 			FW_Flash_Messages::add(
 				$flash_id,
-				$this->get_db_data( $this->get_name() . '-' . $form_id . '/failure_message',
-					__( 'Oops something went wrong.', 'fw' ) )
+				fw_akg('failure_message', $form, __( 'Oops something went wrong.', 'fw' ) )
 				. ' <em style="color:transparent;">' . $result['message'] . '</em>',
 				'error'
 			);
@@ -173,7 +177,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 	 * @return mixed|null
 	 */
 	public function get_option( $id, $multikey = null ) {
-		$form = $this->get_db_data( $this->get_name() . '-' . $id );
+		$form = $this->get_form_db_data( $id );
 
 		if ( empty( $form ) ) {
 			return null;
