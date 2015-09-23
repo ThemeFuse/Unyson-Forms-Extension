@@ -41,7 +41,7 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 		 * There is no other possibility to save form data by id because contact form is a shortcode
 		 * it has no save action and we can't access it by id (we don't know in which post it is)
 		 */
-		$extension->_set_form_db_data($atts['id'], $form_data);
+		$extension->_set_form_db_data($atts['id'], $atts);
 
 		return $extension->render(
 			array(
