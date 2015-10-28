@@ -14,6 +14,10 @@ class FW_Option_Type_Recaptcha extends FW_Option_Type {
 		return 'recaptcha';
 	}
 
+	private function get_uri( $append = '' ) {
+		return fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/form-builder/items/recaptcha/includes/option-type-recaptcha' . $append );
+	}
+
 	/**
 	 * @internal
 	 */
@@ -31,12 +35,12 @@ class FW_Option_Type_Recaptcha extends FW_Option_Type {
 			'inner-options' => array(
 				'site-key'    => array(
 					'label' => __( 'Site key', 'unyson' ),
-					'desc'  => __( 'Paste here your code site serves to users.', 'unyson' ),
+					'desc'  => __( 'Your website key. More on how to configure ReCaptcha', 'unyson' ) . ': <a href="https://www.google.com/recaptcha" target="_blank">https://www.google.com/recaptcha</a>',
 					'type'  => 'text'
 				),
 				'secret-key'    => array(
 					'label' => __( 'Secret key', 'unyson' ),
-					'desc'  => __( 'Paste here secret key for communication between your site and Google. Be sure to keep it a secret.', 'unyson' ),
+					'desc'  => __( 'Your secret key. More on how to configure ReCaptcha', 'unyson' ) . ': <a href="https://www.google.com/recaptcha" target="_blank">https://www.google.com/recaptcha</a>',
 					'type'  => 'text'
 				),
 			),
@@ -49,6 +53,10 @@ class FW_Option_Type_Recaptcha extends FW_Option_Type {
 	 * {@inheritdoc}
 	 */
 	protected function _enqueue_static( $id, $option, $data ) {
+		wp_enqueue_style(
+			'fw-option-type-'. $this->get_type(),
+			$this->get_uri( '/static/css/styles.css' )
+		);
 	}
 
 	/**

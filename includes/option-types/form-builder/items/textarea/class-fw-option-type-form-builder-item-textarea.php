@@ -73,7 +73,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 							'label' => array(
 								'type'  => 'text',
 								'label' => __( 'Label', 'fw' ),
-								'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
+								'desc'  => __( 'Enter field label (it will be displayed on the web site)', 'fw' ),
 								'value' => __( 'Paragraph Text', 'fw' ),
 							)
 						),

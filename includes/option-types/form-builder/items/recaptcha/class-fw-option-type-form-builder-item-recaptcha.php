@@ -74,14 +74,12 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 			'label'     => array(
 				'type'  => 'text',
 				'label' => __( 'Label', 'fw' ),
-				'desc'  => __( 'Enter field label ( ite will be displayed on the web site )', 'fw' ),
+				'desc'  => __( 'Enter field label (it will be displayed on the web site)', 'fw' ),
 				'value' => __( 'Recaptcha', 'fw' ),
 			),
 			'recaptcha' => array(
 				'type'  => 'recaptcha',
 				'label' => false,
-				'desc'  => __( 'Please refer more details on how to configure ReCaptcha', 'fw' )
-				           . ': <a href="https://www.google.com/recaptcha" target="_blank">https://www.google.com/recaptcha</a>',
 				'value' => null,
 			)
 		);
