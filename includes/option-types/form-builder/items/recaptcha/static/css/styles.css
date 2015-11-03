@@ -45,10 +45,20 @@
 
 /* end: preview */
 
-.fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.alpha{
+.fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.alpha {
     padding-right: 5px;
 }
 
-.fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.omega{
+body.rtl .fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.alpha {
+	padding-right: 0;
+	padding-left: 5px;
+}
+
+.fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.omega {
     padding-left: 5px;
+}
+
+body.rtl .fw-option-type-form-builder .fw-form-builder-item-type-recaptcha .fw-form-item-recaptcha-preview .fw-col-xs-6.omega {
+	padding-right: 5px;
+	padding-left: 0;
 }
