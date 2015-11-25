@@ -1,7 +1,13 @@
 (function (fwe, _, itemData) {
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function (builder) {
 		var PageBuilderContactFormItem,
-			PageBuilderContactFormItemView;
+			PageBuilderContactFormItemView,
+			getEventName = function(itemModel, event) {
+				return 'fw:builder-type:{builder-type}:item-type:{item-type}:'
+					.replace('{builder-type}', builder.get('type'))
+					.replace('{item-type}', itemModel.get('type'))
+					+ event;
+			};
 
 		PageBuilderContactFormItemView = builder.classes.ItemView.extend({
 			initialize: function (options) {
@@ -19,6 +25,37 @@
 
 					this.listenTo(this.modal, 'change:values', function (modal, values) {
 						this.model.set('atts', values);
+					});
+
+					this.listenTo(this.modal, {
+						'open': function(){
+							fwEvents.trigger(getEventName(this.model, 'options-modal:open'), {
+								modal: this.modal,
+								item: this.model,
+								itemView: this
+							});
+						},
+						'render': function(){
+							fwEvents.trigger(getEventName(this.model, 'options-modal:render'), {
+								modal: this.modal,
+								item: this.model,
+								itemView: this
+							});
+						},
+						'close': function(){
+							fwEvents.trigger(getEventName(this.model, 'options-modal:close'), {
+								modal: this.modal,
+								item: this.model,
+								itemView: this
+							});
+						},
+						'change:values': function(){
+							fwEvents.trigger(getEventName(this.model, 'options-modal:change:values'), {
+								modal: this.modal,
+								item: this.model,
+								itemView: this
+							});
+						}
 					});
 				}
 			},
