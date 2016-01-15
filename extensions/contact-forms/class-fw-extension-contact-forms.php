@@ -151,6 +151,8 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		);
 
 		if ( $result['status'] ) {
+			do_action('fw:ext:contact-forms:sent', $entry_data);
+
 			FW_Flash_Messages::add(
 				$flash_id,
 				fw_akg('success_message', $form, __( 'Message sent!', 'fw' ) ),
