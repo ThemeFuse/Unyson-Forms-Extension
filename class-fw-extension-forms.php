@@ -49,7 +49,7 @@ class FW_Extension_Forms extends FW_Extension {
 				'builder_value' => json_decode( $form['json'], true ),
 				'form_type'     => $form_type,
 				'form_id'       => $form_id,
-				'submit'        => $submit_button
+				'submit'        => $submit_button,
 			) );
 		}
 
@@ -71,6 +71,7 @@ class FW_Extension_Forms extends FW_Extension {
 		$form_type_input_id   = 'fw_ext_forms_form_id';
 
 		$data['attr']['data-fw-ext-forms-type'] = $form_type;
+		$data['attr']['class'] = apply_filters('fw:ext:forms:attr:class', $data['attr']['class']);
 
 		echo '<input type="hidden" name="' . $form_type_input_name . '" value="' . esc_attr( $form_type ) . '" />';
 		echo '<input type="hidden" name="' . $form_type_input_id . '" value="' . esc_attr( $form_id ) . '" />';
