@@ -143,6 +143,16 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			'shortcode_to_item' => $data['shortcode_to_item'],
 		);
 
+		/**
+		 * Use the first email filed as Reply-To header
+		 */
+		foreach ($entry_data['shortcode_to_item'] as $item) {
+			if ($item['type'] === 'email' && $item['options']['required']) {
+				$entry_data['reply_to'] = $entry_data['form_values'][ $item['shortcode'] ];
+				break;
+			}
+		}
+
 		$result = fw_ext_mailer_send_mail(
 			$to,
 			fw_akg('subject_message', $form, ''),
