@@ -245,10 +245,10 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		 * @var FW_Option_Type_Form_Builder_Item[] $item_types
 		 */
 		$item_types = $this->get_item_types();
-
-		$html    = '<div class="fw-row">';
-		$width   = 0;
-		$counter = 0;
+		$row_class  = ($row_class  = fw_ext('builder')->get_config('grid.row.class')) ? $row_class : 'fw-row';
+		$html       = '<div class="'. esc_attr($row_class) .'">';
+		$width      = 0;
+		$counter    = 0;
 
 		foreach ( $items as $item ) {
 			if ( ! isset( $item_types[ $item['type'] ] ) ) {
@@ -263,12 +263,12 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 			$html .= $item_types[ $item['type'] ]->frontend_render( $item, $input_value );
 
 			if ( $width >= 1 ) {
-				$html .= '</div><div class="fw-row">';
+				$html .= '</div><div class="'. esc_attr($row_class) .'">';
 				$width = 0;
 			} elseif ( isset( $items[ $counter + 1 ] )
 			           && ( $width + $this->calculate_width( $items[ $counter + 1 ]['width'] ) > 1 )
 			) {
-				$html .= '</div><div class="fw-row">';
+				$html .= '</div><div class="'. esc_attr($row_class) .'">';
 				$width = 0;
 			}
 
