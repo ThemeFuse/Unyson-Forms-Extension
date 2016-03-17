@@ -10,7 +10,9 @@ foreach (
 		'RequestMethod'     => 'RequestMethod',
 		'RequestParameters' => 'RequestParameters',
 		'Response'          => 'Response',
-		'Post'              => 'RequestMethod/Post'
+		'Post'              => 'RequestMethod/Post',
+		'Socket'            => 'RequestMethod/Socket',
+		'SocketPost'        => 'RequestMethod/SocketPost',
 	)
 	as $classname => $location
 ) {

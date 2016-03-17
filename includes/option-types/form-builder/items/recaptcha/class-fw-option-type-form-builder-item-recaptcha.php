@@ -94,7 +94,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 	 */
 	public function get_value_from_attributes( $attributes ) {
 		return $attributes;
-//		return $this->get_fixed_attributes( $attributes );
+		//return $this->get_fixed_attributes( $attributes );
 	}
 
 	/**
@@ -153,7 +153,10 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		if ( empty( $keys ) ) {
 			return $mesages['not-configured'];
 		}
-		$recaptcha          = new ReCaptcha( $keys['secret-key'] );
+
+		$recaptcha = new ReCaptcha(
+			$keys['secret-key'], (function_exists('ini_get') && ini_get('allow_url_fopen')) ? null : new SocketPost()
+		);
 		$gRecaptchaResponse = FW_Request::POST( 'g-recaptcha-response' );
 
 		if ( empty( $gRecaptchaResponse ) ) {
