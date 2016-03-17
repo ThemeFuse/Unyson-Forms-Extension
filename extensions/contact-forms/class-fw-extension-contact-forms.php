@@ -126,16 +126,24 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 			);
 		}
 
-		$to = $form['email_to'];
+		{
+			$to = array();
 
-		if ( ! filter_var( $to, FILTER_VALIDATE_EMAIL ) ) {
-			FW_Flash_Messages::add(
-				$flash_id,
-				__( 'Invalid destination email (please contact the site administrator)', 'fw' ),
-				'error'
-			);
+			foreach (array_map('trim', explode(',', $form['email_to'])) as $to_email) {
+				if ( filter_var( $to_email, FILTER_VALIDATE_EMAIL ) ) {
+					$to[] = $to_email;
+				} else {
+					FW_Flash_Messages::add(
+						$flash_id,
+						__( 'Invalid destination email (please contact the site administrator)', 'fw' ),
+						'error'
+					);
 
-			return;
+					return;
+				}
+			}
+
+			$to = implode(',', $to);
 		}
 
 		$entry_data = array(
