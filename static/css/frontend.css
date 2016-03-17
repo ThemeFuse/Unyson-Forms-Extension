@@ -391,3 +391,39 @@
 .wrap-forms .nav-form .button.button-nav-form.prev {
 	float: left;
 }
+
+/* layout */
+
+.wrap-forms .field-columns-0:after,
+.wrap-forms .field-columns-2:after,
+.wrap-forms .field-columns-3:after {
+	width: 100%;
+	height: 0;
+	content: '';
+	display: inline-block;
+}
+
+.wrap-forms .field-columns-0 .options,
+.wrap-forms .field-columns-2 .field-column,
+.wrap-forms .field-columns-3 .field-column {
+	float: left;
+	padding-right: 5px;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.wrap-forms .field-columns-0 .options {
+	padding-right: 15px;
+}
+
+.wrap-forms .field-columns-2 .field-column {
+	width: 50%;
+}
+
+.wrap-forms .field-columns-3 .field-column {
+	width: 33.3333%;
+}
+
+/* end: layout */
