@@ -435,7 +435,13 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							$constraint_data['min'] == 1 ? '' : 's'
 						);
 					}
-					if ( ! is_null( $constraint_data['max'] ) && $value > $constraint_data['max'] ) {
+					if (
+						! is_null( $constraint_data['max'] )
+						&&
+						$constraint_data['min'] !== $constraint_data['max']
+						&&
+						$value > $constraint_data['max']
+					) {
 						return sprintf( $messages['value_max'],
 							$constraint_data['max'],
 							$constraint_data['max'] == 1 ? '' : 's'
