@@ -42,6 +42,17 @@ $options = array(
 						'title'   => __( 'Options', 'fw' ),
 						'type'    => 'tab',
 						'options' => array(
+							'form_email_settings' => array(
+								'type'    => 'group',
+								'options' => array(
+									'email_to' => array(
+										'type'  => 'text',
+										'label' => __( 'Email To', 'fw' ),
+										'help' => __( 'We recommend you to use an email that you verify often', 'fw' ),
+										'desc'  => __( 'The form will be sent to this email address.', 'fw' ),
+									),
+								),
+							),
 							'form_text_settings'  => array(
 								'type'    => 'group',
 								'options' => array(
@@ -83,17 +94,6 @@ $options = array(
 										'label' => __( 'Failure Message', 'fw' ),
 										'desc' => __( 'This text will be displayed when the form will fail to be sent', 'fw' ),
 										'value' => __( 'Oops something went wrong.', 'fw' ),
-									),
-								),
-							),
-							'form_email_settings' => array(
-								'type'    => 'group',
-								'options' => array(
-									'email_to' => array(
-										'type'  => 'text',
-										'label' => __( 'Email To', 'fw' ),
-										'help' => __( 'We recommend you to use an email that you verify often', 'fw' ),
-										'desc'  => __( 'The form will be sent to this email address.', 'fw' ),
 									),
 								),
 							),
