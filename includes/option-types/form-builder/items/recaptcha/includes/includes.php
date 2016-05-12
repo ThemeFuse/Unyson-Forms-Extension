@@ -6,11 +6,11 @@ fw_include_file_isolated( dirname( __FILE__ ) . '/option-type-recaptcha/class-fw
 
 foreach (
 	array(
-		'ReCaptcha'         => 'ReCaptcha',
-		'RequestMethod'     => 'RequestMethod',
-		'RequestParameters' => 'RequestParameters',
-		'Response'          => 'Response',
-		'Post'              => 'RequestMethod/Post'
+		'ReCaptcha'                  => 'ReCaptcha',
+		'ReCaptchaRequestMethod'     => 'RequestMethod',
+		'ReCaptchaRequestParameters' => 'RequestParameters',
+		'ReCaptchaResponse'          => 'Response',
+		'ReCaptchaPost'              => 'RequestMethod/Post'
 	)
 	as $classname => $location
 ) {
