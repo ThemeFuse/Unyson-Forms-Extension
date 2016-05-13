@@ -29,7 +29,7 @@
  * instead of get_file_contents(). This is to account for people who may be on 
  * servers where allow_furl_open is disabled.
  */
-class SocketPost implements ReCaptchaRequestMethod
+class ReCaptchaSocketPost implements ReCaptchaRequestMethod
 {
     /**
      * reCAPTCHA service host.
