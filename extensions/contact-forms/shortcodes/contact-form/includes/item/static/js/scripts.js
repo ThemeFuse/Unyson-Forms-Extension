@@ -101,6 +101,15 @@
 			),
 			render: function () {
 				this.defaultRender(this.templateData);
+
+				/**
+				 * Other scripts can append/prepend other control $elements
+				 */
+				fwEvents.trigger('fw:page-builder:shortcode:contact-form:controls', {
+					$controls: this.$('.controls:first'),
+					model: this.model,
+					builder: builder
+				});
 			},
 			events: {
 				'click .contact-form-item-mailer': 'configureMailer',
