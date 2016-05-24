@@ -12,4 +12,7 @@ require $dir .'/select/class-fw-option-type-form-builder-item-select.php';
 require $dir .'/email/class-fw-option-type-form-builder-item-email.php';
 require $dir .'/website/class-fw-option-type-form-builder-item-website.php';
 require $dir .'/recaptcha/class-fw-option-type-form-builder-item-recaptcha.php';
-require $dir .'/form-header-title/class-fw-option-type-form-builder-item-form-header-title.php';
+
+if (apply_filters('fw:ext:forms:builder:load-item:form-header-title', true)) {
+	require $dir . '/form-header-title/class-fw-option-type-form-builder-item-form-header-title.php';
+}
