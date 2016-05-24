@@ -18,17 +18,19 @@ $options = array(
 						'label' => false,
 						'type'  => 'form-builder',
 						'value' => array(
-							'json' => json_encode( array(
-								array(
-									'type'      => 'form-header-title',
-									'shortcode' => 'form_header_title',
-									'width'     => '',
-									'options'   => array(
-										'title'    => '',
-										'subtitle' => '',
+							'json' => apply_filters('fw:ext:forms:builder:load-item:form-header-title', true)
+								? json_encode( array(
+									array(
+										'type'      => 'form-header-title',
+										'shortcode' => 'form_header_title',
+										'width'     => '',
+										'options'   => array(
+											'title'    => '',
+											'subtitle' => '',
+										)
 									)
-								)
-							) )
+								) )
+								: '[]'
 						),
 						'fixed_header' => true,
 					),
