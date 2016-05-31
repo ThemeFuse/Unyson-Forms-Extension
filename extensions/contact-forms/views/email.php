@@ -6,7 +6,7 @@
 
 ?>
 
-<table align="center" border="0" cellpadding="10">
+<table border="0" cellpadding="10">
 	<tbody>
 	<?php foreach ($form_values as $shortcode => $form_value): ?>
 		<?php
@@ -37,6 +37,8 @@
 				$title = fw_htmlspecialchars($item_options['label']);
 				$value = '<pre>'. fw_htmlspecialchars($form_value) .'</pre>';
 				break;
+			case 'recaptcha':
+				continue 2;
 			default:
 				$title = fw_htmlspecialchars($item_options['label']);
 
