@@ -144,6 +144,9 @@
 				delete attributes['_items'];
 
 				clonedContactForm = new PageBuilderContactFormItem(attributes);
+
+				triggerEvent(clonedContactForm, 'clone-item:before');
+
 				this.model.collection.add(clonedContactForm, {at: index + 1});
 				clonedContactForm.get('_items').reset(_items);
 				return false;
