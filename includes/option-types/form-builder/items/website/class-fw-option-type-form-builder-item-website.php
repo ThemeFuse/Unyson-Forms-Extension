@@ -126,6 +126,7 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 					)
 				)
 			),
+			$this->get_extra_options()
 		);
 	}
 

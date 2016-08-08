@@ -65,4 +65,18 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	public function get_value_from_item( $value ) {
 		return $value;
 	}
+
+	/**
+	 * Search in '/extensions/forms/{builder_type}/items/{item_type}/options/options.php'
+	 * @return array
+	 * @since 2.0.23
+	 */
+	final protected function get_extra_options() {
+		if ($extra_options = $this->locate_path( '/options/options.php', false )) {
+			$extra_options = fw_get_variables_from_file($extra_options, array('options' => array()));
+			return $extra_options['options'];
+		} else {
+			return array();
+		}
+	}
 }

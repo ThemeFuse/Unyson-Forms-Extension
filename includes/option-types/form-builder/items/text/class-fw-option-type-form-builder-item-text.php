@@ -183,6 +183,7 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 					)
 				)
 			),
+			$this->get_extra_options()
 		);
 	}
 

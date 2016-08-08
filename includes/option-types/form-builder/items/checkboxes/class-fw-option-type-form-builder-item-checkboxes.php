@@ -138,6 +138,7 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 					'desc'  => __( 'The users will see these instructions in the tooltip near the field', 'fw' ),
 				)
 			),
+			$this->get_extra_options()
 		);
 	}
 

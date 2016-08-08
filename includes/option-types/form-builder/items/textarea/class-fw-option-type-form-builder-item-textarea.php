@@ -183,6 +183,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 					)
 				)
 			),
+			$this->get_extra_options()
 		);
 	}
 
