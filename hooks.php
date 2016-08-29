@@ -13,3 +13,8 @@ function _filter_ext_forms_change_builder_item_widths($widths) {
 	return $widths;
 }
 add_filter('fw_builder_item_widths:form-builder', '_filter_ext_forms_change_builder_item_widths');
+
+function _action_fw_ext_forms_option_types_init() {
+	require dirname(__FILE__) .'/includes/option-types/form-builder/class-fw-option-type-form-builder.php';
+}
+add_action('fw_option_types_init', '_action_fw_ext_forms_option_types_init');
