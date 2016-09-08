@@ -4,6 +4,8 @@
 
 class FW_Shortcode_Contact_Form extends FW_Shortcode
 {
+	private $restricted_types = array( 'contact-form' );
+
 	/**
 	 * @internal
 	 */
@@ -13,6 +15,15 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 			'fw_option_type_builder:page-builder:register_items',
 			array($this, '_action_register_builder_item_types')
 		);
+
+		add_filter( 'fw_ext:shortcodes:collect_shortcodes_data', array(
+			$this, 'add_contact_form_data_to_filter'
+		) );
+	}
+
+	public function add_contact_form_data_to_filter( $structure ) {
+		$data['contact_form'] = $this->get_item_data();
+		return array_merge( $structure, $data );
 	}
 
 	public function _action_register_builder_item_types() {
@@ -64,5 +75,62 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 				$form_data
 			)
 		);
+	}
+
+	public function get_item_data() {
+		/**
+		 * @var FW_Shortcode $cf_shortcode
+		 */
+
+		$data = array(
+			'title'           => __( 'Contact Form', 'fw' ),
+			'mailer'          => fw_ext_mailer_is_configured(),
+			'configureMailer' => __( 'Configure Mailer', 'fw' ),
+			'edit'            => __( 'Edit', 'fw' ),
+			'duplicate'       => __( 'Duplicate', 'fw' ),
+			'remove'          => __( 'Remove', 'fw' ),
+			'restrictedTypes' => $this->restricted_types,
+			'image'           => $this->locate_URI( '/static/img/page_builder.png' )
+		);
+
+		$options = $this->get_options();
+		if ( $options ) {
+			fw()->backend->enqueue_options_static( $options );
+			$data['options'] = $this->transform_options( $options );
+
+			$data['default_values'] = fw_get_options_values_from_input(
+				$options, array()
+			);
+		}
+
+		$data['popup_size'] = 'large';
+		$data['tag'] = 'contact_form';
+
+		return $data;
+	}
+
+	/*
+	 * Puts each option into a separate array
+	 * to keep it's order inside the modal dialog
+	 */
+	private function transform_options( $options ) {
+		$transformed_options = array();
+		foreach ( $options as $id => $option ) {
+			if ( is_int( $id ) ) {
+				/**
+				 * this happens when in options array are loaded external options using fw()->theme->get_options()
+				 * and the array looks like this
+				 * array(
+				 *    'hello' => array('type' => 'text'), // this has string key
+				 *    array('hi' => array('type' => 'text')) // this has int key
+				 * )
+				 */
+				$transformed_options[] = $option;
+			} else {
+				$transformed_options[] = array( $id => $option );
+			}
+		}
+
+		return $transformed_options;
 	}
 }
