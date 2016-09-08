@@ -17,11 +17,14 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 		);
 
 		add_filter( 'fw_ext:shortcodes:collect_shortcodes_data', array(
-			$this, 'add_contact_form_data_to_filter'
+			$this, '_filter_add_contact_form_data'
 		) );
 	}
 
-	public function add_contact_form_data_to_filter( $structure ) {
+	/**
+	 * @internal
+	 */
+	public function _filter_add_contact_form_data( $structure ) {
 		$data['contact_form'] = $this->get_item_data();
 		return array_merge( $structure, $data );
 	}
