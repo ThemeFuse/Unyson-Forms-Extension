@@ -42,30 +42,28 @@ class FW_Option_Type_Form_Builder_Item_Radio extends FW_Option_Type_Form_Builder
 			true
 		);
 
-		wp_localize_script(
-			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
-			'fw_form_builder_item_type_' . $this->get_type(),
-			array(
-				'l10n'     => array(
-					'item_title'      => __( 'Single Choice', 'fw' ),
-					'label'           => __( 'Label', 'fw' ),
-					'toggle_required' => __( 'Toggle mandatory field', 'fw' ),
-					'edit'            => __( 'Edit', 'fw' ),
-					'delete'          => __( 'Delete', 'fw' ),
-					'edit_label'      => __( 'Edit Label', 'fw' ),
-					'x_more'          => __( '{x} More', 'fw' ),
-					'close'           => __( 'Close', 'fw' ),
-				),
-				'options'  => $this->get_options(),
-				'defaults' => array(
-					'type'    => $this->get_type(),
-					'width'   => fw_ext( 'forms' )->get_config( 'items/width' ),
-					'options' => fw_get_options_values_from_input( $this->get_options(), array() )
-				)
+		fw()->backend->enqueue_options_static( $this->get_options() );
+	}
+
+	public function get_item_localization() {
+		return array(
+			'l10n'     => array(
+				'item_title'      => __( 'Single Choice', 'fw' ),
+				'label'           => __( 'Label', 'fw' ),
+				'toggle_required' => __( 'Toggle mandatory field', 'fw' ),
+				'edit'            => __( 'Edit', 'fw' ),
+				'delete'          => __( 'Delete', 'fw' ),
+				'edit_label'      => __( 'Edit Label', 'fw' ),
+				'x_more'          => __( '{x} More', 'fw' ),
+				'close'           => __( 'Close', 'fw' ),
+			),
+			'options'  => $this->get_options(),
+			'defaults' => array(
+				'type'    => $this->get_type(),
+				'width'   => fw_ext( 'forms' )->get_config( 'items/width' ),
+				'options' => fw_get_options_values_from_input( $this->get_options(), array() )
 			)
 		);
-
-		fw()->backend->enqueue_options_static( $this->get_options() );
 	}
 
 	private function get_options() {
