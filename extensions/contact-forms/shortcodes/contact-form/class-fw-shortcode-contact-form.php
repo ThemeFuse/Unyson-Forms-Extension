@@ -80,6 +80,12 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 		);
 	}
 
+	/**
+	 * Collect data for the Contact Form Shortcode itself. This data is used
+	 * for now just in Page Builder, may be used by anyone else around.
+	 *
+	 * @since 1.0.2
+	 */
 	public function get_item_data() {
 		/**
 		 * @var FW_Shortcode $cf_shortcode
