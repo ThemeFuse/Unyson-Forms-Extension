@@ -30,13 +30,17 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		}
 	}
 
+	/**
+	 * @since 1.0.2
+	 */
 	public function _filter_add_form_builder_items_data( $structure ) {
-		if( ! isset( $structure['contact_form_items'] ) ) {
+		if ( ! isset( $structure['contact_form_items'] ) ) {
 			$structure['contact_form_items'] = array();
 		}
 
 		$item_types = $this->get_item_types();
-		foreach( $item_types as $name => $class ) {
+
+		foreach ( $item_types as $name => $class ) {
 			$structure['contact_form_items'][ $name ] = $class->get_item_localization();
 		}
 
