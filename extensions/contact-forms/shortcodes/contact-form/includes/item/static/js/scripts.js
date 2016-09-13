@@ -1,4 +1,6 @@
 (function (fwe) {
+	fw.unysonShortcodesData();
+
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function (builder) {
 		var PageBuilderContactFormItem,
 			PageBuilderContactFormItemView,
