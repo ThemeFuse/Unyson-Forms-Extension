@@ -1,6 +1,6 @@
-fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
+fwEvents.on('fw-builder:' + 'form-builder' + ':register-items', function(builder){
 	var currentItemType = 'checkboxes';
-	var localized = window['fw_form_builder_item_type_'+ currentItemType];
+	var localized = fw.unysonShortcodesData()['contact_form_items'][currentItemType];
 
 	var ItemView = builder.classes.ItemView.extend({
 		template: _.template(
@@ -35,7 +35,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 												'<span class="if-list-open"><%- close %></span>'+
 											')</strong></a>'+
 										'<% } %>'+
-									'</p>'+
+								    '</p>'+
 								'<% }); %>'+
 							'</div>'+
 						'<% } else { %>'+
@@ -47,7 +47,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 					'</div>'+
 				'</div>'+
 			'</div>'
-		),
+	    ),
 		events: {
 			'click': 'onWrapperClick',
 			'click .fw-form-item-control-edit': 'openEdit',
@@ -154,7 +154,7 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 				this.openEdit();
 			}
 		}
-	});
+    });
 
 	var Item = builder.classes.Item.extend({
 		defaults: function() {
@@ -167,9 +167,9 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 		initialize: function() {
 			this.defaultInitialize();
 
-			/**
-			 * get options from wp_localize_script() variable
-			 */
+				/**
+			* get options from wp_localize_script() variable
+			*/
 			this.modalOptions = localized.options;
 
 			this.view = new ItemView({

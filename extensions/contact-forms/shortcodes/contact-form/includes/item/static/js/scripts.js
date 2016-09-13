@@ -1,4 +1,6 @@
-(function (fwe, _, itemData) {
+(function (fwe) {
+	fw.unysonShortcodesData();
+
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function (builder) {
 		var PageBuilderContactFormItem,
 			PageBuilderContactFormItemView,
@@ -162,23 +164,23 @@
 			defaults: {
 				type: 'contact-form'
 			},
-			restrictedTypes: itemData.restrictedTypes,
+			restrictedTypes: itemData().restrictedTypes,
 			initialize: function (atts, opts) {
 
 				this.view = new PageBuilderContactFormItemView({
 					id: 'page-builder-item-' + this.cid,
 					model: this,
-					modalOptions: itemData.options,
-					modalSize: itemData.popup_size,
+					modalOptions: itemData().options,
+					modalSize: itemData().popup_size,
 					templateData: {
-						title: itemData.title,
-						image: itemData.image,
-						isMailer : itemData.mailer,
-						configureMailer : itemData.configureMailer,
-						edit : itemData.edit,
-						duplicate : itemData.duplicate,
-						remove : itemData.remove,
-						hasOptions: !!itemData.options
+						title: itemData().title,
+						image: itemData().image,
+						isMailer : itemData().mailer,
+						configureMailer : itemData().configureMailer,
+						edit : itemData().edit,
+						duplicate : itemData().duplicate,
+						remove : itemData().remove,
+						hasOptions: !!itemData().options
 					}
 				});
 
@@ -191,4 +193,8 @@
 
 		builder.registerItemClass(PageBuilderContactFormItem);
 	});
-})(fwEvents, _, page_builder_item_type_contact_form_data);
+
+	function itemData () {
+		return fw.unysonShortcodesData()['contact_form'];
+	}
+})(fwEvents);

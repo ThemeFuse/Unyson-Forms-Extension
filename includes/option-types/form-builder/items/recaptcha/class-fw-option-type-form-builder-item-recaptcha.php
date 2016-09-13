@@ -14,7 +14,11 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 	}
 
 	private function get_uri( $append = '' ) {
-		return fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_builder_type() . '/items/' . $this->get_type() . $append );
+		return fw_get_framework_directory_uri(
+			'/extensions/forms/includes/option-types/' .
+			$this->get_builder_type() . '/items/' .
+			$this->get_type() . $append
+		);
 	}
 
 	public function get_thumbnails() {
@@ -45,28 +49,29 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 			true
 		);
 
-		wp_localize_script(
-			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
-			'fw_form_builder_item_type_' . $this->get_type(),
-			array(
-				'options'  => $this->get_options(),
-				'l10n'     => array(
-					'item_title' => __( 'Recaptcha', 'fw' ),
-					'label'      => __( 'Label', 'fw' ),
-					'edit_label' => __( 'Edit Label', 'fw' ),
-					'edit'       => __( 'Edit', 'fw' ),
-					'delete'     => __( 'Delete', 'fw' ),
-					'site_key'   => __( 'Set site key', 'fw' ),
-					'secret_key' => __( 'Set secret key', 'fw' ),
-				),
-				'defaults' => array(
-					'type'    => $this->get_type(),
-					'options' => fw_get_options_values_from_input( $this->get_options(), array() )
-				)
+		fw()->backend->enqueue_options_static( $this->get_options() );
+	}
+
+	/**
+	 * @since 1.0.2
+	 */
+	public function get_item_localization() {
+		return array(
+			'options'  => $this->get_options(),
+			'l10n'     => array(
+				'item_title' => __( 'Recaptcha', 'fw' ),
+				'label'      => __( 'Label', 'fw' ),
+				'edit_label' => __( 'Edit Label', 'fw' ),
+				'edit'       => __( 'Edit', 'fw' ),
+				'delete'     => __( 'Delete', 'fw' ),
+				'site_key'   => __( 'Set site key', 'fw' ),
+				'secret_key' => __( 'Set secret key', 'fw' ),
+			),
+			'defaults' => array(
+				'type'    => $this->get_type(),
+				'options' => fw_get_options_values_from_input( $this->get_options(), array() )
 			)
 		);
-
-		fw()->backend->enqueue_options_static( $this->get_options() );
 	}
 
 	private function get_options() {

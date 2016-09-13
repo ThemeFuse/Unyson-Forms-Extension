@@ -1,6 +1,7 @@
 fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
-	var currentItemType = 'form_header_title';
-	var localized = window['fw_form_builder_item_type_'+ currentItemType];
+	var currentItemType = 'form-header-title';
+
+	var localized = fw.unysonShortcodesData()['contact_form_items'][currentItemType];
 
 	var ItemView = builder.classes.ItemView.extend({
 		template: _.template(
@@ -127,9 +128,9 @@ fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 
 			this.defaultInitialize();
 
-			/**
-			 * get options from wp_localize_script() variable
-			 */
+				/**
+			* get options from wp_localize_script() variable
+			*/
 
 			this.modalOptions = localized.options;
 
