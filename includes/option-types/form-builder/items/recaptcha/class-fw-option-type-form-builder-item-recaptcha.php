@@ -14,7 +14,11 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 	}
 
 	private function get_uri( $append = '' ) {
-		return fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_builder_type() . '/items/' . $this->get_type() . $append );
+		return fw_get_framework_directory_uri(
+			'/extensions/forms/includes/option-types/' .
+			$this->get_builder_type() . '/items/' .
+			$this->get_type() . $append
+		);
 	}
 
 	public function get_thumbnails() {
@@ -48,6 +52,9 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		fw()->backend->enqueue_options_static( $this->get_options() );
 	}
 
+	/**
+	 * @since 1.0.2
+	 */
 	public function get_item_localization() {
 		return array(
 			'options'  => $this->get_options(),

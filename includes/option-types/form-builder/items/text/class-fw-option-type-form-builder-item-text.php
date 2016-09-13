@@ -8,7 +8,11 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 	}
 
 	private function get_uri( $append = '' ) {
-		return fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_builder_type() . '/items/' . $this->get_type() . $append );
+		return fw_get_framework_directory_uri(
+			'/extensions/forms/includes/option-types/' .
+			$this->get_builder_type() . '/items/' .
+			$this->get_type() . $append
+		);
 	}
 
 	public function get_thumbnails() {
