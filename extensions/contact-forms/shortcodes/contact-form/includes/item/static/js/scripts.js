@@ -195,6 +195,7 @@
 	});
 
 	function itemData () {
-		return fw.unysonShortcodesData()['contact_form'];
+		// return fw.unysonShortcodesData()['contact_form'];
+		return page_builder_item_type_contact_form_data;
 	}
 })(fwEvents);
