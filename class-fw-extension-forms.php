@@ -25,6 +25,8 @@ class FW_Extension_Forms extends FW_Extension {
 			'validate' => array( $this, '_frontend_form_validate' ),
 			'save'     => array( $this, '_frontend_form_save' ),
 		) );
+
+		add_filter('fw:form:nonce-name-data', array($this, '_filter_frontend_nonce_name_date'), 10, 3);
 	}
 
 	/**
@@ -123,8 +125,8 @@ class FW_Extension_Forms extends FW_Extension {
 				'invalid-form-id' => __( 'Unable to process the form', 'fw' )
 			);
 		}
-		$form = $form_instance->get_form_builder_value( $form_id );
 
+		$form = $form_instance->get_form_builder_value( $form_id );
 
 		if ( empty( $form ) ) {
 			return array(
@@ -259,5 +261,23 @@ class FW_Extension_Forms extends FW_Extension {
 				$this->extract_shortcode_item($extracted, $item['_items']);
 			}
 		}
+	}
+
+	/**
+	 * @param string $val
+	 * @param FW_Form $form
+	 * @param array $render_data
+	 * @return string
+	 */
+	public function _filter_frontend_nonce_name_date($val, $form, $render_data) {
+		if ($form->get_id() === $this->frontend_form->get_id()) {
+			if (isset($render_data['data']['form_id'])) {
+				return $render_data['data']['form_id'];
+			} else {
+				return FW_Request::POST('fw_ext_forms_form_id', '');
+			}
+		}
+
+		return $val;
 	}
 }
