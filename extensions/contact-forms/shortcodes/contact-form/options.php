@@ -65,7 +65,7 @@ $options = array(
 												'type'  => 'text',
 												'label' => __( 'Subject Message', 'fw' ),
 												'desc' => __( 'This text will be used as subject message for the email', 'fw' ),
-												'value' => __( 'New message', 'fw' ),
+												'value' => __( 'Contact Form', 'fw' ),
 											),
 										)
 									),
