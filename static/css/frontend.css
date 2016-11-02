@@ -414,6 +414,14 @@
 	box-sizing: border-box;
 }
 
+body.rtl .wrap-forms .field-columns-0 .options,
+body.rtl .wrap-forms .field-columns-2 .field-column,
+body.rtl .wrap-forms .field-columns-3 .field-column {
+	float: right;
+	padding-left: 5px;
+	padding-right: 0;
+}
+
 .wrap-forms .field-columns-0 .options {
 	padding-right: 15px;
 }
