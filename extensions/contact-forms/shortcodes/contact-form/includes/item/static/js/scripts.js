@@ -122,11 +122,29 @@
 			},
 			editOptions: function (e) {
 				e.stopPropagation();
+
 				if (!this.modal) {
 					return;
 				}
-				this.modal.open();
-				return false;
+
+				var flow = {cancelModalOpening: false};
+
+				/**
+				 * Trigger before-open model just like we do this for
+				 * item-simple shortcodes.
+				 *
+				 * http://bit.ly/1KY6tpP
+				 */
+				fwEvents.trigger('fw:page-builder:shortcode:contact-form:modal:before-open', {
+					modal: this.modal,
+					model: this.model,
+					builder: builder,
+					flow: flow
+				});
+
+				if (! flow.cancelModalOpening) {
+					this.modal.open();
+				}
 			},
 			configureMailer: function (e) {
 				this.editOptions(e);
