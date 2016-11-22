@@ -229,6 +229,10 @@ class FW_Extension_Forms extends FW_Extension {
 			'type' => $form_type,
 			'instance' => $form_instance,
 			'process_data' => $process_data,
+			/** @since 2.0.28 */
+			'shortcode_to_item' => $shortcode_to_item,
+			/** @since 2.0.28 */
+			'builder_value'     => $builder_value
 		));
 
 		return $fw_form_data;
