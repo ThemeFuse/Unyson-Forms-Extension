@@ -13,9 +13,11 @@ $options = $item['options'];
 <?php else: ?>
 	<div class="<?php echo esc_attr(fw_ext_builder_get_item_width('form-builder', $item['width'] .'/frontend_class')) ?>">
 		<div class="field-select select-styled">
-			<label for="<?php echo esc_attr($attr['id']) ?>"><?php echo fw_htmlspecialchars($item['options']['label']) ?>
+			<?php if ($options['label']): ?>
+			<label for="<?php echo esc_attr($attr['id']) ?>"><?php echo fw_htmlspecialchars($options['label']) ?>
 				<?php if ($options['required']): ?><sup>*</sup><?php endif; ?>
 			</label>
+			<?php endif; ?>
 			<select <?php echo fw_attr_to_html($attr) ?> >
 				<?php foreach ($choices as $choice): ?>
 					<option <?php echo fw_attr_to_html($choice) ?> ><?php echo $choice['value'] ?></option>

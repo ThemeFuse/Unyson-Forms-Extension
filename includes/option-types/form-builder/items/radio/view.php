@@ -19,9 +19,11 @@ switch ($options['layout']) {
 <?php else: ?>
 	<div class="<?php echo esc_attr(fw_ext_builder_get_item_width('form-builder', $item['width'] .'/frontend_class')) ?>">
 		<div class="field-radio input-styled">
+			<?php if ($options['label']): ?>
 			<label><?php echo fw_htmlspecialchars($options['label']) ?>
 				<?php if ($options['required']): ?><sup>*</sup><?php endif; ?>
 			</label>
+			<?php endif; ?>
 			<div class="custom-radio field-columns-<?php echo esc_attr($columns); ?>">
 				<?php if ($columns > 1): ?>
 					<?php
