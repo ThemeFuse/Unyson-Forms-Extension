@@ -179,8 +179,7 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		} else {
 			FW_Flash_Messages::add(
 				$flash_id,
-				fw_akg('failure_message', $form, __( 'Oops something went wrong.', 'fw' ) )
-				. ' <em style="color:transparent;">' . $result['message'] . '</em>',
+				fw_akg('failure_message', $form, __( 'Oops something went wrong.', 'fw' ) ) . ' ' . $result['message'],
 				'error'
 			);
 		}
