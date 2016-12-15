@@ -25,18 +25,13 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 			array(),
 			fw()->theme->manifest->get_version()
 		);
+
 		wp_enqueue_script(
 			$this->get_builder_type() . '_item_type_' . $this->get_type(),
 			$uri. '/js/scripts.js',
 			array( 'fw-events', 'underscore', 'jquery' ),
 			fw()->theme->manifest->get_version(),
 			true
-		);
-
-		wp_localize_script(
-			$this->get_builder_type() . '_item_type_' . $this->get_type(),
-			str_replace( '-', '_', $this->get_builder_type() ) . '_item_type_contact_form_data',
-			fw_ext('shortcodes')->get_shortcode('contact_form')->get_item_data()
 		);
 	}
 

@@ -1,5 +1,6 @@
 fwEvents.on('fw-builder:'+ 'form-builder' +':register-items', function(builder){
 	var currentItemType = 'text';
+
 	var localized = fw.unysonShortcodesData()['contact_form_items'][currentItemType];
 
 	var ItemView = builder.classes.ItemView.extend({

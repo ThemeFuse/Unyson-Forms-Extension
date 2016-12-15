@@ -38,13 +38,21 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 			$structure['contact_form_items'] = array();
 		}
 
+		$structure['contact_form_items'] = $this->_collect_item_types_data();
+
+		return $structure;
+	}
+
+	protected function _collect_item_types_data() {
+		$data = array();
+
 		$item_types = $this->get_item_types();
 
 		foreach ( $item_types as $name => $class ) {
-			$structure['contact_form_items'][ $name ] = $class->get_item_localization();
+			$data[ $name ] = $class->get_item_localization();
 		}
 
-		return $structure;
+		return $data;
 	}
 
 	/**
@@ -65,15 +73,35 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 
 		wp_enqueue_style(
 			'fw-builder-' . $this->get_type(),
-			fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_type() . '/static/css/styles.css' ),
+			fw_get_framework_directory_uri(
+				'/extensions/forms/includes/option-types/' .
+				$this->get_type() .
+				'/static/css/styles.css'
+			),
 			array( 'fw' )
 		);
+
 		wp_enqueue_script(
 			'fw-builder-' . $this->get_type(),
-			fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_type() . '/static/js/helpers.js' ),
+			fw_get_framework_directory_uri(
+				'/extensions/forms/includes/option-types/' .
+				$this->get_type() .
+				'/static/js/helpers.js'
+			),
 			array( 'fw' ),
-			false,
-			true
+			false, true
+		);
+
+		wp_localize_script(
+			'fw-builder-' . $this->get_type(),
+			'fw_' . str_replace( '-', '_', $this->get_type() ) . '_item_type_contact_form_data',
+			array(
+				'contact_form' => fw_ext('shortcodes')->get_shortcode(
+					'contact_form'
+				)->get_item_data(),
+
+				'contact_form_items' => $this->_collect_item_types_data()
+			)
 		);
 	}
 

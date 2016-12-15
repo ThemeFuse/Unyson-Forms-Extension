@@ -1,3 +1,15 @@
+/**
+ * TODO: refactor this thing!!!
+ */
+fwEvents.on(
+	'fw-builder:form-builder:collect-async-init-promises',
+	function (data) {
+		data.promises.push(
+			fw.shortcodesLoadData()
+		);
+	}
+);
+
 fwEvents.on('fw-builder:' + 'form-builder' + ':register-items', function(builder){
 	var currentItemType = 'checkboxes';
 	var localized = fw.unysonShortcodesData()['contact_form_items'][currentItemType];

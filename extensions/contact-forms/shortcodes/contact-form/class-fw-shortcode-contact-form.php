@@ -103,8 +103,10 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 		);
 
 		$options = $this->get_options();
+
 		if ( $options ) {
-			fw()->backend->enqueue_options_static( $options );
+			// fw()->backend->enqueue_options_static( $options );
+
 			$data['options'] = $this->transform_options( $options );
 
 			$data['default_values'] = fw_get_options_values_from_input(

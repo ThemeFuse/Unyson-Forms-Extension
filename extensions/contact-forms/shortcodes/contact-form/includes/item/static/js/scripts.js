@@ -1,6 +1,4 @@
 (function (fwe) {
-	fw.unysonShortcodesData();
-
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function (builder) {
 		var PageBuilderContactFormItem,
 			PageBuilderContactFormItemView,
@@ -214,6 +212,9 @@
 
 	function itemData () {
 		// return fw.unysonShortcodesData()['contact_form'];
-		return page_builder_item_type_contact_form_data;
+		// return page_builder_item_type_contact_form_data;
+		return fw_form_builder_item_type_contact_form_data[
+			'contact_form'
+		];
 	}
 })(fwEvents);
