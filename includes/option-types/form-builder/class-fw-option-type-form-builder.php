@@ -49,6 +49,12 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		$item_types = $this->get_item_types();
 
 		foreach ( $item_types as $name => $class ) {
+			if (!method_exists($class, 'get_item_localization')) {
+				// fixes https://wordpress.org/support/topic/fatal-error-2392/
+				// todo: maybe add a default get_item_localization() method?
+				continue;
+			}
+
 			$data[ $name ] = $class->get_item_localization();
 		}
 
