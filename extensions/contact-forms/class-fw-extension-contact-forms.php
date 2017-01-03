@@ -149,6 +149,10 @@ class FW_Extension_Contact_Forms extends FW_Extension_Forms_Form {
 		$entry_data = array(
 			'form_values'       => $form_values,
 			'shortcode_to_item' => $data['shortcode_to_item'],
+			/** @since 2.0.30 */
+			'cc'  => apply_filters('fw:ext:contact-forms:email:cc',  array( /* 'john@smith.com' => 'John Smith' */ )),
+			/** @since 2.0.30 */
+			'bcc' => apply_filters('fw:ext:contact-forms:email:bcc', array( /* 'john@smith.com' => 'John Smith' */ )),
 		);
 
 		/**
