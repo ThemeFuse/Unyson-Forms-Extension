@@ -99,7 +99,8 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 			'duplicate'       => __( 'Duplicate', 'fw' ),
 			'remove'          => __( 'Remove', 'fw' ),
 			'restrictedTypes' => $this->restricted_types,
-			'image'           => $this->locate_URI( '/static/img/page_builder.png' )
+			'image'           => $this->locate_URI( '/static/img/page_builder.png' ),
+			'header_elements' => $this->get_config('page_builder/popup_header_elements')
 		);
 
 		$options = $this->get_options();

@@ -42,10 +42,11 @@
 					triggerEvent(this.model, 'options-modal:settings', eventData);
 
 					this.modal = new fw.OptionsModal({
-						title: 'Contact Form', // TODO: make translatable
+						title: itemData().title,
 						options: options.modalOptions,
 						values: this.model.get('atts'),
-						size: options.modalSize
+						size: options.modalSize,
+						headerElements: itemData().header_elements
 					}, eventData.modalSettings);
 
 					this.listenTo(this.modal, 'change:values', function (modal, values) {
