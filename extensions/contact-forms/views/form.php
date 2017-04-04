@@ -7,6 +7,6 @@
  * @var array $extra_data
  */
 ?>
-<div class="form-wrapper contact-form">
+<div class="form-wrapper fw-contact-form contact-form">
 	<?php echo $form_html; ?>
 </div>
