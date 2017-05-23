@@ -37,20 +37,18 @@ class Page_Builder_Contact_Form_Item extends Page_Builder_Item {
 
 	protected function get_thumbnails_data() {
 		/**
-		 * @var FW_Shortcode $cf_shortcode
+		 * @var FW_Shortcode_Contact_Form $shortcode
 		 */
-		$cf_shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
+		$shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
 
-		$cf_thumbnail = array(
-			array(
-				'tab'         => __( 'Content Elements', 'fw' ),
-				'title'       => __( 'Contact form', 'fw' ),
-				'description' => __( 'Add a Contact Form', 'fw' ),
-				'image'       => $cf_shortcode->locate_URI( '/static/img/page_builder.png' ),
-			)
+		$thumbnail = array(
+			'tab'         => __( 'Content Elements', 'fw' ),
+			'title'       => __( 'Contact form', 'fw' ),
+			'description' => __( 'Add a Contact Form', 'fw' ),
+			'icon'       => $shortcode->locate_URI( '/static/img/page_builder.png' ),
 		);
 
-		return $cf_thumbnail;
+		return array( shortcode_atts( $thumbnail, $shortcode->get_config( 'page_builder' ) ) );
 	}
 
 	public function get_value_from_attributes( $attributes ) {
