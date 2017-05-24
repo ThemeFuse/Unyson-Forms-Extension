@@ -87,7 +87,14 @@
 			},
 			template: _.template(
 				'<div class="pb-item-type-contact-form pb-item-type-simple pb-item <% if (hasOptions) { print(' + '"has-options"' + ')} %>">' +
-					'<img src="<%- image %>"><%- title %>' +
+	        '<% if (icon) { %>' +
+		        '<% if (typeof FwBuilderComponents.ItemView.iconToHtml == "undefined") { %>' +
+		          '<img src="<%- icon %>" alt="Icon" />' +
+		        '<% } else { %>' +
+		          '<%= FwBuilderComponents.ItemView.iconToHtml(icon) %>' +
+		        '<% } %>' +
+	        '<% } %>' +
+					'<%- title %>' +
 					'<div class="controls">' +
 						'<% if (!isMailer) { %>' +
 						'<i class="dashicons dashicons-info contact-form-item-mailer" data-hover-tip="<%- configureMailer %>"></i>' +
@@ -191,7 +198,7 @@
 					modalSize: itemData().popup_size,
 					templateData: {
 						title: itemData().title,
-						image: itemData().image,
+						icon: itemData().icon,
 						isMailer : itemData().mailer,
 						configureMailer : itemData().configureMailer,
 						edit : itemData().edit,

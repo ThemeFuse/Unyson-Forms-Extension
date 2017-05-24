@@ -88,20 +88,26 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 	 */
 	public function get_item_data() {
 		/**
-		 * @var FW_Shortcode $cf_shortcode
+		 * @var FW_Shortcode_Contact_Form $shortcode
 		 */
+		$shortcode = fw_ext( 'shortcodes' )->get_shortcode( 'contact_form' );
 
-		$data = array(
-			'title'           => __( 'Contact Form', 'fw' ),
-			'mailer'          => fw_ext_mailer_is_configured(),
-			'configureMailer' => __( 'Configure Mailer', 'fw' ),
-			'edit'            => __( 'Edit', 'fw' ),
-			'duplicate'       => __( 'Duplicate', 'fw' ),
-			'remove'          => __( 'Remove', 'fw' ),
-			'restrictedTypes' => $this->restricted_types,
-			'image'           => $this->locate_URI( '/static/img/page_builder.png' ),
-			'header_elements' => $this->get_config('page_builder/popup_header_elements')
+		$data = shortcode_atts(
+			array(
+				'title'      => __( 'Contact Formsss', 'fw' ),
+				'icon'      => $this->locate_URI( '/static/img/page_builder.png' ),
+				'popup_size' => 'large'
+			),
+			$shortcode->get_config( 'page_builder' )
 		);
+
+		$data['mailer']          = fw_ext_mailer_is_configured();
+		$data['configureMailer'] = __( 'Configure Mailer', 'fw' );
+		$data['edit']            = __( 'Edit', 'fw' );
+		$data['duplicate']       = __( 'Duplicate', 'fw' );
+		$data['remove']          = __( 'Remove', 'fw' );
+		$data['restrictedTypes'] = $this->restricted_types;
+		$data['header_elements'] = $this->get_config( 'page_builder/popup_header_elements' );
 
 		$options = $this->get_options();
 
@@ -115,7 +121,6 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 			);
 		}
 
-		$data['popup_size'] = 'large';
 		$data['tag'] = 'contact_form';
 
 		return $data;
