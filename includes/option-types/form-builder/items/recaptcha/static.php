@@ -9,7 +9,7 @@ wp_register_script( 'g-recaptcha',
 
 wp_enqueue_script( 'frontend-recaptcha',
   $this->get_uri( '/static/js/frontend-recaptcha.js' ),
-  array( 'g-recaptcha' ),
+  array( 'g-recaptcha', 'jquery' ),
   fw_ext( 'forms' )->manifest->get_version(),
   true
 );
