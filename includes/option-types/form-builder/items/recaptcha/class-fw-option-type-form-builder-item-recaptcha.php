@@ -113,24 +113,8 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 			return '';
 		}
 
-		wp_enqueue_script( 'frontend-recaptcha',
-			$this->get_uri( '/static/js/frontend-recaptcha.js' ),
-			array( 'jquery' ),
-			fw_ext( 'forms' )->manifest->get_version(),
-			true
-		);
-
-		wp_localize_script( 'frontend-recaptcha', 'form_builder_item_recaptcha', array(
-			'site_key' => $keys['site-key']
-		) );
-
-		wp_enqueue_script(
-			'g-recaptcha',
-			'https://www.google.com/recaptcha/api.js?onload=fw_forms_builder_item_recaptcha_init&render=explicit&hl=' . get_locale(),
-			array( 'frontend-recaptcha' ),
-			null,
-			true
-		);
+		// allow users to customize frontend static
+		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );
 
 		return fw_render_view(
 			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
