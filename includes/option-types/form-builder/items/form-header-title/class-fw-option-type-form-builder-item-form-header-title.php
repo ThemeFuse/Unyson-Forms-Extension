@@ -56,18 +56,21 @@ class FW_Option_Type_Form_Builder_Item_Form_Header_Title extends FW_Option_Type_
 
 	private function get_options() {
 		return array(
-			'title'    => array(
-				'type'  => 'text',
-				'label' => __( 'Title', 'fw' ),
-				'desc'  => __( 'The title will be displayed on contact form header', 'fw' ),
-				'value' => '',
+			array(
+				'title'    => array(
+					'type'  => 'text',
+					'label' => __( 'Title', 'fw' ),
+					'desc'  => __( 'The title will be displayed on contact form header', 'fw' ),
+					'value' => '',
+				),
+				'subtitle' => array(
+					'type'  => 'textarea',
+					'label' => __( 'Subtitle', 'fw' ),
+					'desc'  => __( 'The form header subtitle text', 'fw' ),
+					'value' => '',
+				)
 			),
-			'subtitle' => array(
-				'type'  => 'textarea',
-				'label' => __( 'Subtitle', 'fw' ),
-				'desc'  => __( 'The form header subtitle text', 'fw' ),
-				'value' => '',
-			)
+			$this->get_extra_options()
 		);
 	}
 
