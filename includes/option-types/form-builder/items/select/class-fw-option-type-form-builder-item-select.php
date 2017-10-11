@@ -209,6 +209,9 @@ class FW_Option_Type_Form_Builder_Item_Select extends FW_Option_Type_Form_Builde
 			}
 		}
 
+		// allow users to customize frontend static
+		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );
+
 		return fw_render_view(
 			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
 			array(
