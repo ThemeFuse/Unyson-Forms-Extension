@@ -124,19 +124,6 @@ class FW_Option_Type_Form_Builder_Item_Radio extends FW_Option_Type_Form_Builder
 				)
 			),
 			array(
-				'layout' => array(
-					'type'    => 'select',
-					'label'   => __( 'Field Layout', 'fw' ),
-					'desc'    => __( 'Select choice display layout', 'fw' ),
-					'choices' => array(
-						'one-column'    => __( 'One column', 'fw' ),
-						'two-columns'   => __( 'Two columns', 'fw' ),
-						'three-columns' => __( 'Three columns', 'fw' ),
-						'side-by-side'  => __( 'Side by side', 'fw' ),
-					),
-				)
-			),
-			array(
 				'info' => array(
 					'type'  => 'textarea',
 					'label' => __( 'Instructions for Users', 'fw' ),
