@@ -307,7 +307,7 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		$width      = 0;
 		$counter    = 0;
 
-		foreach ( $items as $index => $item ) {
+		foreach ( $items as $item ) {
 			if ( ! isset( $item_types[ $item['type'] ] ) ) {
 				trigger_error( 'Invalid form item type: ' . $item['type'], E_USER_WARNING );
 				continue;
