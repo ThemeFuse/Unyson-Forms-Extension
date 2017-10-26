@@ -302,12 +302,12 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		 * @var FW_Option_Type_Form_Builder_Item[] $item_types
 		 */
 		$item_types = $this->get_item_types();
-		$row_class  = ($row_class  = fw_ext('builder')->get_config('grid.row.class')) ? $row_class : 'fw-row';
-		$html       = '<div class="'. esc_attr($row_class) .'">';
+		$row_class  = esc_attr( ( $row_class = fw_ext( 'builder' )->get_config( 'grid.row.class' ) ) ? $row_class : 'fw-row' );
+		$html       = '';
 		$width      = 0;
 		$counter    = 0;
 
-		foreach ( $items as $item ) {
+		foreach ( $items as $index => $item ) {
 			if ( ! isset( $item_types[ $item['type'] ] ) ) {
 				trigger_error( 'Invalid form item type: ' . $item['type'], E_USER_WARNING );
 				continue;
@@ -315,24 +315,32 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 
 			$input_value = isset( $input_values[ $item['shortcode'] ] ) ? $input_values[ $item['shortcode'] ] : null;
 
+			$item_html = $item_types[ $item['type'] ]->frontend_render( $item, $input_value );
+
+			if ( empty( $item_html ) ) {
+				continue;
+			}
+
+			if ( $width === 0 ) {
+				$html .= '<div class="' . $row_class . '">';
+			}
+
+			$html .= $item_html;
+
 			$width += $this->calculate_width( $item['width'] );
 
-			$html .= $item_types[ $item['type'] ]->frontend_render( $item, $input_value );
-
 			if ( $width >= 1 ) {
-				$html .= '</div><div class="'. esc_attr($row_class) .'">';
+				$html  .= '</div>';
 				$width = 0;
-			} elseif ( isset( $items[ $counter + 1 ] )
-			           && ( $width + $this->calculate_width( $items[ $counter + 1 ]['width'] ) > 1 )
-			) {
-				$html .= '</div><div class="'. esc_attr($row_class) .'">';
+			} elseif ( isset( $items[ $counter + 1 ] ) && ( $width + $this->calculate_width( $items[ $counter + 1 ]['width'] ) > 1 ) ) {
+				$html  .= '</div>';
 				$width = 0;
 			}
 
 			$counter ++;
 		}
 
-		return $html . '</div>';
+		return $html;
 	}
 
 	/**
