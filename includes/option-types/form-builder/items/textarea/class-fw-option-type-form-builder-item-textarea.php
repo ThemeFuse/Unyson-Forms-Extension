@@ -282,6 +282,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 		{
 			$attr = array(
 				'name'        => $item['shortcode'],
+				'autocomplete'=> 'off',
 				'placeholder' => $options['placeholder'],
 				'id'          => 'id-' . fw_unique_increment(),
 			);
