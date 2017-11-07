@@ -183,6 +183,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 		{
 			$attr = array(
 				'type'        => 'text',
+				'autocomplete'=> 'email',
 				'name'        => $item['shortcode'],
 				'placeholder' => $options['placeholder'],
 				'value'       => is_null( $input_value ) ? '' : $input_value,
