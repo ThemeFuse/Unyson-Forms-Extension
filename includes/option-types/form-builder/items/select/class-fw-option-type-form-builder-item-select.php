@@ -220,6 +220,7 @@ class FW_Option_Type_Form_Builder_Item_Select extends FW_Option_Type_Form_Builde
 				'value'   => $value,
 				'attr'    => array(
 					'name' => $item['shortcode'],
+					'autocomplete' => 'off',
 					'id'   => 'id-' . fw_unique_increment(),
 				),
 			)
