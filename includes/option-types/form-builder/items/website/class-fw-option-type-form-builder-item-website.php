@@ -190,7 +190,7 @@ class FW_Option_Type_Form_Builder_Item_Website extends FW_Option_Type_Form_Build
 		{
 			$attr = array(
 				'type'        => 'text',
-				'autocomplete'=> 'off',
+				'autocomplete'=> 'url',
 				'name'        => $item['shortcode'],
 				'placeholder' => $options['placeholder'],
 				'value'       => is_null( $input_value ) ? $options['default_value'] : $input_value,
