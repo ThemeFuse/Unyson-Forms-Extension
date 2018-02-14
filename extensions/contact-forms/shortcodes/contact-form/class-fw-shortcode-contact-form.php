@@ -19,6 +19,19 @@ class FW_Shortcode_Contact_Form extends FW_Shortcode
 		add_filter( 'fw_ext:shortcodes:collect_shortcodes_data', array(
 			$this, '_filter_add_contact_form_data'
 		) );
+
+		add_action( 'save_post', array( $this, '_action_clear_temporary_data_form' ) );
+		add_action( 'delete_post', array( $this, '_action_clear_temporary_data_form' ) );
+	}
+
+	public function _action_clear_temporary_data_form( $post_id ) {
+
+		if ( ! ( $builder_data = fw_get_db_post_option( $post_id, 'page-builder' ) ) || ! $builder_data['builder_active'] ) {
+			return;
+		}
+
+		global $wpdb;
+		$wpdb->query( "DELETE FROM {$wpdb->prefix}options WHERE option_name LIKE '%fw:ext:cf:fd:%'" );
 	}
 
 	/**
