@@ -35,7 +35,7 @@
 				break;
 			case 'textarea':
 				$title = fw_htmlspecialchars($item_options['label']);
-				$value = '<pre>'. fw_htmlspecialchars($form_value) .'</pre>';
+				$value = '<pre style="font-family:arial,sans-serif;font-size:100%;">'. fw_htmlspecialchars($form_value) .'</pre>';
 				break;
 			case 'recaptcha':
 				continue 2;
