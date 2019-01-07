@@ -72,7 +72,7 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	 * @since 2.0.23
 	 */
 	final protected function get_extra_options() {
-		if ($extra_options = $this->locate_path( '/options/options.php', false )) {
+		if ($extra_options = $this->locate_path( '/options.php', false )) {
 			$extra_options = fw_get_variables_from_file($extra_options, array('options' => array()));
 			return $extra_options['options'];
 		} else {

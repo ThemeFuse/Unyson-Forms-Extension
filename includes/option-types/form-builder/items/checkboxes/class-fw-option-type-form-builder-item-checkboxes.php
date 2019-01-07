@@ -120,27 +120,14 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 								'value' => false,
 							)
 						),
+						array(
+							'info' => array(
+								'type'  => 'textarea',
+								'label' => __( 'Instructions for Users', 'fw' ),
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field', 'fw' ),
+							)
+						)
 					)
-				)
-			),
-			array(
-				'layout' => array(
-					'type'    => 'select',
-					'label'   => __( 'Field Layout', 'fw' ),
-					'desc'    => __( 'Select choice display layout', 'fw' ),
-					'choices' => array(
-						'one-column'    => __( 'One column', 'fw' ),
-						'two-columns'   => __( 'Two columns', 'fw' ),
-						'three-columns' => __( 'Three columns', 'fw' ),
-						'side-by-side'  => __( 'Side by side', 'fw' ),
-					),
-				)
-			),
-			array(
-				'info' => array(
-					'type'  => 'textarea',
-					'label' => __( 'Instructions for Users', 'fw' ),
-					'desc'  => __( 'The users will see these instructions in the tooltip near the field', 'fw' ),
 				)
 			),
 			$this->get_extra_options()
@@ -202,13 +189,16 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 	public function frontend_render( array $item, $input_value ) {
 		$options = $item['options'];
 
+		// allow users to customize frontend static
+		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );		
+
 		$value = ( is_null( $input_value ) || ! is_array( $input_value ) ) ? array() : $input_value;
 
 		// prepare choices
 		{
 			$choices = array();
 
-			foreach ( $options['choices'] as $choice ) {
+			foreach ( $options['choices'] as $i=>$choice ) {
 				$attr = array(
 					'type'  => 'checkbox',
 					'name'  => $item['shortcode'] . '[]',
@@ -217,6 +207,11 @@ class FW_Option_Type_Form_Builder_Item_Checkboxes extends FW_Option_Type_Form_Bu
 
 				if ( in_array( $choice, $value ) ) {
 					$attr['checked'] = 'checked';
+				}
+
+				if ($options['required']) {
+					$attr['required'] = 'required';
+					$attr['onchange'] = 'fw_required_input_handler.apply(this)';
 				}
 
 				$choices[] = $attr;

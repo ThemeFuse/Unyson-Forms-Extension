@@ -92,6 +92,21 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 								'value' => true,
 							)
 						),
+						array(
+							'autocomplete' => array(
+								'label'   => __( 'Autocomplete', 'fw' ),
+								'desc'    => sprintf( __( 'For a faster and more friendly user interface, you can set the autocomplete behavior for this field according to the %s', 'fw' ), '<a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete" target="_blank">spec</a>'),
+								'type'    => 'select',
+								'value'   => 'off',
+								'choices' => array(
+									'off' 		=> 'off', // default
+									'on'		=> 'on', // automatic
+									"bday-day" 	=> "bday-day", // Day component of birthday	//Valid integer in the range 1..31	8	Numeric
+									"bday-month"=> "bday-month", // Month component of birthday	Valid integer in the range 1..12	6	Numeric
+									"bday-year" => "bday-year", // Year component of birthday	Valid integer greater than zero	1955	Numeric
+								)
+							)
+						)
 					)
 				)
 			),
@@ -145,13 +160,13 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 										'min' => array(
 											'type'  => 'short-text',
 											'label' => __( 'Min', 'fw' ),
-											'desc'  => __( 'Minim value', 'fw' ),
+											'desc'  => __( 'Minimum length', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'short-text',
 											'label' => __( 'Max', 'fw' ),
-											'desc'  => __( 'Maxim value', 'fw' ),
+											'desc'  => __( 'Maximum length', 'fw' ),
 											'value' => ''
 										),
 									),
@@ -159,15 +174,21 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 										'min' => array(
 											'type'  => 'text',
 											'label' => __( 'Min', 'fw' ),
-											'desc'  => __( 'Minim value', 'fw' ),
+											'desc'  => __( 'Minimum value', 'fw' ),
 											'value' => 0
 										),
 										'max' => array(
 											'type'  => 'text',
 											'label' => __( 'Max', 'fw' ),
-											'desc'  => __( 'Maxim value', 'fw' ),
+											'desc'  => __( 'Maximum value', 'fw' ),
 											'value' => ''
 										),
+										'step' => array(
+											'type'  => 'text',
+											'label' => __( 'Step', 'fw' ),
+											'desc'  => __( 'Step to increse/decrease', 'fw' ),
+											'value' => '1'
+										),										
 									),
 								),
 							)
@@ -271,6 +292,14 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							$constraint_data['max'] = doubleval( $constraint_data['max'] );
 						}
 
+						if ( $constraint_data['step'] === '' || ! preg_match( $this->number_regex,
+						$constraint_data['step'] )
+						) {
+							$constraint_data['step'] = '1'; // the default step unit
+						} else {
+							$constraint_data['step'] = doubleval( $constraint_data['step'] );
+						}						
+
 						if ( ! is_null( $constraint_data['max'] ) && ! is_null( $constraint_data['min'] ) ) {
 							if ( $constraint_data['max'] < $constraint_data['min'] ) {
 								$constraint_data['max'] = null;
@@ -305,7 +334,8 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 		// prepare attributes
 		{
 			$attr = array(
-				'type'        => 'text',
+				'type'        => 'number',
+				'autocomplete'=> $options['autocomplete'],
 				'name'        => $item['shortcode'],
 				'placeholder' => $options['placeholder'],
 				'value'       => is_null( $input_value ) ? $options['default_value'] : $input_value,
@@ -329,9 +359,14 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 							) );
 						}
 
+						if ( $constraint_data['min'] ) {
+							$attr['minlength'] = $constraint_data['min'];
+						}
+
 						if ( $constraint_data['max'] ) {
 							$attr['maxlength'] = $constraint_data['max'];
 						}
+
 						break;
 					case 'value':
 						if ( ! is_null( $constraint_data['min'] ) || ! is_null( $constraint_data['max'] ) ) {
@@ -339,6 +374,14 @@ class FW_Option_Type_Form_Builder_Item_Number extends FW_Option_Type_Form_Builde
 								'type' => $constraint,
 								'data' => $constraint_data
 							) );
+
+							if ( !is_null($constraint_data['min']) ) {
+								$attr['min'] = $constraint_data['min'];
+							}
+							if ( !is_null($constraint_data['max']) ) {
+								$attr['max'] = $constraint_data['max'];
+							}
+							$attr['step'] = $constraint_data['step']; // never null
 						}
 						break;
 					default:

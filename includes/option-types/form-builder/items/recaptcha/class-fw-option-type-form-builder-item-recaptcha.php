@@ -25,9 +25,9 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Recaptcha field', 'fw' ) . '">' .
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a reCaptcha field', 'fw' ) . '">' .
 					'<div class="item-type-icon"><img src="' . esc_attr( $this->get_uri( '/static/images/icon.png' ) ) . '" /></div>' .
-					'<div class="item-type-title">' . __( 'Recaptcha', 'fw' ) . '</div>' .
+					'<div class="item-type-title">' . __( 'reCaptcha', 'fw' ) . '</div>' .
 					'</div>'
 			)
 		);
@@ -42,9 +42,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		wp_enqueue_script(
 			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
 			$this->get_uri( '/static/js/scripts.js' ),
-			array(
-				'fw-events',
-			),
+			array( 'jquery', 'fw-events' ),
 			false,
 			true
 		);
@@ -59,7 +57,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		return array(
 			'options'  => $this->get_options(),
 			'l10n'     => array(
-				'item_title' => __( 'Recaptcha', 'fw' ),
+				'item_title' => __( 'reCaptcha', 'fw' ),
 				'label'      => __( 'Label', 'fw' ),
 				'edit_label' => __( 'Edit Label', 'fw' ),
 				'edit'       => __( 'Edit', 'fw' ),
@@ -80,7 +78,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 				'type'  => 'text',
 				'label' => __( 'Label', 'fw' ),
 				'desc'  => __( 'Enter field label (it will be displayed on the web site)', 'fw' ),
-				'value' => __( 'Recaptcha', 'fw' ),
+				'value' => __( 'reCaptcha', 'fw' ),
 			),
 			'recaptcha' => array(
 				'type'  => 'recaptcha',
@@ -113,24 +111,8 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 			return '';
 		}
 
-		wp_enqueue_script( 'frontend-recaptcha',
-			$this->get_uri( '/static/js/frontend-recaptcha.js' ),
-			array( 'jquery' ),
-			fw_ext( 'forms' )->manifest->get_version(),
-			true
-		);
-
-		wp_localize_script( 'frontend-recaptcha', 'form_builder_item_recaptcha', array(
-			'site_key' => $keys['site-key']
-		) );
-
-		wp_enqueue_script(
-			'g-recaptcha',
-			'https://www.google.com/recaptcha/api.js?onload=fw_forms_builder_item_recaptcha_init&render=explicit&hl=' . get_locale(),
-			array( 'frontend-recaptcha' ),
-			null,
-			true
-		);
+		// allow users to customize frontend static
+		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );
 
 		return fw_render_view(
 			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
@@ -139,6 +121,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 				'label' => ( isset( $input_value['label'] ) ) ? $input_value['label'] : __( 'Security Code', 'fw' ),
 				'attr'  => array(
 					'class' => 'form-builder-item-recaptcha',
+					'autocomplete' => 'off',
 				),
 			)
 		);
