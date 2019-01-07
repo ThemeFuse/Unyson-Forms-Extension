@@ -25,9 +25,9 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		return array(
 			array(
 				'html' =>
-					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a Recaptcha field', 'fw' ) . '">' .
+					'<div class="item-type-icon-title" data-hover-tip="' . __( 'Add a reCaptcha field', 'fw' ) . '">' .
 					'<div class="item-type-icon"><img src="' . esc_attr( $this->get_uri( '/static/images/icon.png' ) ) . '" /></div>' .
-					'<div class="item-type-title">' . __( 'Recaptcha', 'fw' ) . '</div>' .
+					'<div class="item-type-title">' . __( 'reCaptcha', 'fw' ) . '</div>' .
 					'</div>'
 			)
 		);
@@ -42,9 +42,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		wp_enqueue_script(
 			'fw-builder-' . $this->get_builder_type() . '-item-' . $this->get_type(),
 			$this->get_uri( '/static/js/scripts.js' ),
-			array(
-				'fw-events',
-			),
+			array( 'jquery', 'fw-events' ),
 			false,
 			true
 		);
@@ -59,7 +57,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 		return array(
 			'options'  => $this->get_options(),
 			'l10n'     => array(
-				'item_title' => __( 'Recaptcha', 'fw' ),
+				'item_title' => __( 'reCaptcha', 'fw' ),
 				'label'      => __( 'Label', 'fw' ),
 				'edit_label' => __( 'Edit Label', 'fw' ),
 				'edit'       => __( 'Edit', 'fw' ),
@@ -80,7 +78,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 				'type'  => 'text',
 				'label' => __( 'Label', 'fw' ),
 				'desc'  => __( 'Enter field label (it will be displayed on the web site)', 'fw' ),
-				'value' => __( 'Recaptcha', 'fw' ),
+				'value' => __( 'reCaptcha', 'fw' ),
 			),
 			'recaptcha' => array(
 				'type'  => 'recaptcha',
@@ -123,6 +121,7 @@ class FW_Option_Type_Form_Builder_Item_Recaptcha extends FW_Option_Type_Form_Bui
 				'label' => ( isset( $input_value['label'] ) ) ? $input_value['label'] : __( 'Security Code', 'fw' ),
 				'attr'  => array(
 					'class' => 'form-builder-item-recaptcha',
+					'autocomplete' => 'off',
 				),
 			)
 		);

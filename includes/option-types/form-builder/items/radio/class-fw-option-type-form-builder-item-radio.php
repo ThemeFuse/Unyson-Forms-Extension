@@ -189,13 +189,16 @@ class FW_Option_Type_Form_Builder_Item_Radio extends FW_Option_Type_Form_Builder
 	public function frontend_render( array $item, $input_value ) {
 		$options = $item['options'];
 
+		// allow users to customize frontend static
+		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );		
+
 		$value = (string) $input_value;
 
 		// prepare choices
 		{
 			$choices = array();
 
-			foreach ( $options['choices'] as $choice ) {
+			foreach ( $options['choices'] as $i=>$choice ) {
 				$attr = array(
 					'type'  => 'radio',
 					'name'  => $item['shortcode'],
@@ -204,6 +207,11 @@ class FW_Option_Type_Form_Builder_Item_Radio extends FW_Option_Type_Form_Builder
 
 				if ( $choice === $value ) {
 					$attr['checked'] = 'checked';
+				}
+
+				if ($options['required']) {
+					$attr['required'] = 'required';
+					$attr['onchange'] = 'fw_required_input_handler.apply(this)';
 				}
 
 				$choices[] = $attr;

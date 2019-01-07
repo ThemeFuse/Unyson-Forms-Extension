@@ -92,6 +92,34 @@ class FW_Option_Type_Form_Builder_Item_Select extends FW_Option_Type_Form_Builde
 								'value' => true,
 							)
 						),
+						array(
+							'autocomplete' => array(
+								'label'   => __( 'Autocomplete', 'fw' ),
+								'desc'    => sprintf( __( 'For a faster and more friendly user interface, you can set the autocomplete behavior according to the %s', 'fw' ), '<a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete" target="_blank">spec</a>'),
+								'type'    => 'select',
+								'value'   => 'off',
+								'choices' => array(
+									'off' 		=> 'off', // default
+									'on'			=> 'on',
+									"honorific-prefix" => "honorific-prefix", //Honorific prefix or title, (e.g. "Mr.", "Ms.", "Dr.", "Mlle")	Free-form text, no newlines	Sir	Text
+									"honorific-suffix" => "honorific-suffix", // Honorific suffix, (e.g. "Jr.", "B.Sc.", "MBASW", "II")	Free-form text, no newlines	OM, KBE, FRS, FREng, FRSA	Text
+									"organization-title" => "organization-title", //Job title (e.g. "Software Engineer", "Senior Vice President", "Deputy Managing Director")	Free-form text, no newlines	Professor	Text
+									"country" => "country", //	Country code Valid ISO 3166-1-alpha-2 country code [ISO3166]	US	Text
+									"country-name" => "country-name", // Country name	//Free-form text, no newlines; derived from country in some cases	US	Text
+									"postal-code"	=> "postal-code", // Postal code, post code, ZIP code, CEDEX code (if CEDEX, append "CEDEX", and the arrondissement, if relevant, to the address-level2 field)	Free-form text, no newlines	02139	Text
+									"language" => "language", //Preferred language //	Valid BCP 47 language tag [BCP47]	en	Text
+									"bday-day" => "bday-day", // Day component of birthday	//Valid integer in the range 1..31	8	Numeric
+									"bday-month" => "bday-month", // Month component of birthday	Valid integer in the range 1..12	6	Numeric
+									"bday-year" => "bday-year", // Year component of birthday	Valid integer greater than zero	1955	Numeric
+									"sex"	=> "sex", // Gender identity (e.g. Female, Fa'afafine)	Free-form text, no newlines	Male	Text
+									"tel-country-code" => "tel-country-code", // Country code component of the telephone number	ASCII digits prefixed by a U+002B PLUS SIGN character (+)	+1	Text
+									"tel-area-code"	=> "tel-area-code", // Area code component of the telephone number, with a country-internal prefix applied //if applicable	ASCII digits	617	Text
+									"tel-local-prefix" =>	"tel-local-prefix", // First part of the component of the telephone number that follows the area code, when that component is split into two components	ASCII digits	253	Text
+									"tel-local-suffix" =>	"tel-local-suffix", // Second part of the component of the telephone number that follows the area code, when that component is split into two components	ASCII digits	5702	Text
+									"tel-extension" => "tel-extension", //	Telephone number internal extension code	ASCII digits	1000	Text
+								)
+							)
+						)
 					)
 				)
 			),
@@ -209,20 +237,27 @@ class FW_Option_Type_Form_Builder_Item_Select extends FW_Option_Type_Form_Builde
 			}
 		}
 
+		$required = array();
+		if ( $options['required'] ) {
+			$required['required'] = 'required';
+		} else {
+			$required['aria-required'] = 'false';
+		}		
+
 		// allow users to customize frontend static
 		require ( $this->locate_path( '/static.php' , dirname( __FILE__ ) . '/static.php' ) );
-
+		
 		return fw_render_view(
 			$this->locate_path( '/views/view.php', dirname( __FILE__ ) . '/view.php' ),
 			array(
 				'item'    => $item,
 				'choices' => $choices,
 				'value'   => $value,
-				'attr'    => array(
+				'attr'    => array_merge(array(
 					'name' => $item['shortcode'],
-					'autocomplete' => 'off',
+					'autocomplete' => $options['autocomplete'],
 					'id'   => 'id-' . fw_unique_increment(),
-				),
+				), $required)
 			)
 		);
 	}

@@ -2,7 +2,6 @@
 
 $dir = dirname(__FILE__);
 
-
 require $dir .'/text/class-fw-option-type-form-builder-item-text.php';
 require $dir .'/textarea/class-fw-option-type-form-builder-item-textarea.php';
 require $dir .'/number/class-fw-option-type-form-builder-item-number.php';

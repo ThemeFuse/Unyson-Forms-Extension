@@ -96,7 +96,7 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 			),
 			array( 'fw' ),
 			false, true
-		);
+		);	
 
 		wp_localize_script(
 			'fw-builder-' . $this->get_type(),
