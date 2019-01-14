@@ -67,7 +67,7 @@ abstract class FW_Option_Type_Form_Builder_Item extends FW_Option_Type_Builder_I
 	}
 
 	/**
-	 * Search in '/extensions/forms/{builder_type}/items/{item_type}/options.php'
+	 * Search in '/extensions/forms/{builder_type}/items/{item_type}/options/options.php'
 	 * @return array
 	 * @since 2.0.23
 	 */

@@ -182,7 +182,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 		// prepare attributes
 		{
 			$attr = array(
-				'type'        => 'text',
+				'type'        => 'email',
 				'autocomplete'=> 'email',
 				'name'        => $item['shortcode'],
 				'placeholder' => $options['placeholder'],
@@ -192,6 +192,8 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 
 			if ( $options['required'] ) {
 				$attr['required'] = 'required';
+			} else {
+				$attr['aria-required'] = 'false';
 			}
 		}
 
@@ -219,7 +221,7 @@ class FW_Option_Type_Form_Builder_Item_Email extends FW_Option_Type_Form_Builder
 			'incorrect' => str_replace(
 				array( '{label}' ),
 				array( $options['label'] ),
-				__( 'The {label} field must contain a valid email', 'fw' )
+				__( 'The {label} field must contain a valid email address', 'fw' )
 			),
 		);
 
