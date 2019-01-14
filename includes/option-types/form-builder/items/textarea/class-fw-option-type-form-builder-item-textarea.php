@@ -90,6 +90,19 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 								'value' => true,
 							)
 						),
+						array(
+							'autocomplete' => array(
+								'label'   => __( 'Autocomplete', 'fw' ),
+								'desc'    => sprintf( __( 'For a faster and more friendly user interface, you can set the autocomplete behavior for this field according to the %s', 'fw' ), '<a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete" target="_blank">spec</a>'),
+								'type'    => 'select',
+								'value'   => 'off',
+								'choices' => array(
+									'off' 		=> 'off', // default
+									'on'			=> 'on', // automatic
+									"street-address" => "street-address" // Street address, (multiple lines, newlines preserved)	Free-form text	32 Vassar Street MIT Room 32-G524	Multiline
+								)
+							)
+						)						
 					)
 				)
 			),
@@ -181,8 +194,7 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 							'info' => array(
 								'type'  => 'textarea',
 								'label' => __( 'Instructions for Users', 'fw' ),
-								'desc'  => __( 'The users will see these instructions in the tooltip near the field',
-									'fw' ),
+								'desc'  => __( 'The users will see these instructions in the tooltip near the field', 'fw' ),
 							)
 						),
 					)
@@ -282,12 +294,15 @@ class FW_Option_Type_Form_Builder_Item_Textarea extends FW_Option_Type_Form_Buil
 		{
 			$attr = array(
 				'name'        => $item['shortcode'],
+				'autocomplete'=> $options['autocomplete'],
 				'placeholder' => $options['placeholder'],
 				'id'          => 'id-' . fw_unique_increment(),
 			);
 
 			if ( $options['required'] ) {
 				$attr['required'] = 'required';
+			} else {
+				$attr['aria-required'] = 'false';
 			}
 
 			if ( ! empty( $options['constraints']['constraint'] ) ) {

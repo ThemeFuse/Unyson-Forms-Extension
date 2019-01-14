@@ -87,6 +87,49 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 								'value' => true,
 							)
 						),
+						array(
+							'autocomplete' => array(
+								'label'   => __( 'Autocomplete', 'fw' ),
+								'desc'    => sprintf( __( 'For a faster and more friendly user interface, you can set the autocomplete behavior for this field according to the %s', 'fw' ), '<a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete" target="_blank">spec</a>'),
+								'type'    => 'select',
+								'value'   => 'off',
+								'choices' => array(
+									'off' 		=> 'off', // default
+									'on'			=> 'on', // automatic
+									"name"		=> 'name', //Full name Free-form text, no newlines	Sir Timothy John Berners-Lee, OM, KBE, FRS, FREng, FRSA	Text
+									"honorific-prefix" => "honorific-prefix", //Honorific prefix or title, (e.g. "Mr.", "Ms.", "Dr.", "Mlle")	Free-form text, no newlines	Sir	Text
+									"given-name" => "given-name", //Given name, (in some Western cultures, also known as the first name)	Free-form text, no newlines	Timothy	Text
+									"additional-name" => "additional-name", // Additional names, (in some Western cultures, also known as middle names, forenames other than the first name)	Free-form text, no newlines	John	Text
+									"family-name" => "family-name", // Family name, //(in some Western cultures, also known as the last name or surname)	Free-form text, no newlines	Berners-Lee	Text
+									"honorific-suffix" => "honorific-suffix", // Honorific suffix, (e.g. "Jr.", "B.Sc.", "MBASW", "II")	Free-form text, no newlines	OM, KBE, FRS, FREng, FRSA	Text
+									"nickname" => "nickname", // Nickname, screen name, handle, a typically short name used instead of the full name	Free-form text, no newlines	Tim	Text
+									"organization-title" => "organization-title", //Job title (e.g. "Software Engineer", "Senior Vice President", "Deputy Managing Director")	Free-form text, no newlines	Professor	Text
+									"organization" => "organization", //Company name, corresponding to the person, address, or contact information in the other fields associated with this field	Free-form text, no newlines	World Wide Web Consortium	Text
+									"address-line1"	=> "address-line1", // Street address (one line per field)	Free-form text, no newlines	32 Vassar Street	Text
+									"address-line2"	=> "address-line2",  // Free-form text, no newlines	MIT Room 32-G524	Text
+									"address-line3" => 	"address-line3", // Free-form text, no newlines Text
+									"address-level4" => "address-level4", //most fine-grained administrative level, in addresses with four administrative levels	Free-form text, no newlines Text
+									"address-level3" => "address-level3", //The third administrative level, in addresses with three or more administrative levels	Free-form text, no newlines Text
+									"address-level2" => "address-level2", //The second administrative level, in addresses with two or more administrative levels; in the countries with two administrative levels, this would typically be the city, town, village, or other locality within which the relevant street address is found	Free-form text, no newlines	Cambridge	Text
+									"address-level1" => "address-level1", //The broadest administrative level in the address, i.e. the province within which the locality is found; for example, in the US, this would be the state; in Switzerland it would be the canton; in the UK, the post town	Free-form text, no newlines	MA	Text
+									"country" => "country", //	Country code Valid ISO 3166-1-alpha-2 country code [ISO3166]	US	Text
+									"country-name" => "country-name", // Country name	//Free-form text, no newlines; derived from country in some cases	US	Text
+									"postal-code"	=> "postal-code", // Postal code, post code, ZIP code, CEDEX code (if CEDEX, append "CEDEX", and the arrondissement, if relevant, to the address-level2 field)	Free-form text, no newlines	02139	Text
+									"language" => "language", //Preferred language //	Valid BCP 47 language tag [BCP47]	en	Text
+									"bday" => "bday", // Birthday	Valid date string	1955-06-08	Date SUITED FOR TEXT FIELD
+									"sex"	=> "sex", // Gender identity (e.g. Female, Fa'afafine)	Free-form text, no newlines	Male	Text
+									"tel"	=> "tel", // Full telephone number, including country code	ASCII digits and U+0020 SPACE characters, prefixed by a U+002B PLUS SIGN character (+)	+1 617 253 5702	Tel
+									"tel-country-code" => "tel-country-code", // Country code component of the telephone number	ASCII digits prefixed by a U+002B PLUS SIGN character (+)	+1	Text
+									"tel-national" => "tel-national", // Telephone number without the county code component, with a country-internal prefix applied if applicable	ASCII digits and U+0020 SPACE characters	617 253 5702	Text
+									"tel-area-code"	=> "tel-area-code", // Area code component of the telephone number, with a country-internal prefix applied //if applicable	ASCII digits	617	Text
+									"tel-local"	=> "tel-local", // Telephone number without the country code and area code components	ASCII digits	2535702	Text
+									"tel-local-prefix" =>	"tel-local-prefix", // First part of the component of the telephone number that follows the area code, when that component is split into two components	ASCII digits	253	Text
+									"tel-local-suffix" =>	"tel-local-suffix", // Second part of the component of the telephone number that follows the area code, when that component is split into two components	ASCII digits	5702	Text
+									"tel-extension" => "tel-extension", //	Telephone number internal extension code	ASCII digits	1000	Text
+									"impp" =>	"impp" // URL representing an instant messaging protocol endpoint //(for example, "aim:goim?screenname=example" or "xmpp:fred@example.net")	Valid URL string	irc://example.org/timbl,isuser	URL
+								)
+							)
+						)
 					)
 				)
 			),
@@ -279,6 +322,7 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 		{
 			$attr = array(
 				'type'        => 'text',
+				'autocomplete'=> $options['autocomplete'],
 				'name'        => $item['shortcode'],
 				'placeholder' => $options['placeholder'],
 				'value'       => is_null( $input_value ) ? $options['default_value'] : $input_value,
@@ -287,6 +331,8 @@ class FW_Option_Type_Form_Builder_Item_Text extends FW_Option_Type_Form_Builder_
 
 			if ( $options['required'] ) {
 				$attr['required'] = 'required';
+			} else {
+				$attr['aria-required'] = 'false';
 			}
 
 			if ( ! empty( $options['constraints']['constraint'] ) ) {
